@@ -1,7 +1,8 @@
 CREATE DATABASE photostudio_db DEFAULT CHARACTER SET utf8;
 
-GRANT ALL PRIVILEGES ON photostudio_db.* TO photostudio_user @'localhost' IDENTIFIED BY 'photostudio_pass' WITH
-GRANT OPTION;
+ALTER USER 'photostudio_user'@'localhost' IDENTIFIED BY 'photostudio_pass';
+
+USE photostudio_db;
 
 CREATE TABLE clients (
   id int unsigned not null auto_increment primary key,
@@ -23,7 +24,7 @@ CREATE TABLE clients_pass (
   FOREIGN KEY(client_id) REFERENCES clients(id)
 );
 
-CREATE TABLE upload_photo (
+CREATE TABLE upload_photos (
   id int unsigned not null auto_increment primary key,
   client_id int unsigned not null,
   photo_url varchar(100) not null,
