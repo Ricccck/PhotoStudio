@@ -3,7 +3,7 @@ namespace Src;
 
 class Bootstrap
 {
-  const DB_HOST = 'localhost';
+  const DB_HOST = 'mysql';
   const DB_NAME = 'photostudio_db';
   const DB_USER = 'photostudio_user';
   const DB_PASS = 'photostudio_pass';
@@ -13,17 +13,17 @@ class Bootstrap
   const CACHE_DIR = false;
   const APP_URL = 'http://localhost:8080/';
 
-  public static function loadClass($class)
-  {
+  // public static function loadClass($class)
+  // {
 
-    // クラスファイルのパスを生成
-    $path = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
+  //   // クラスファイルのパスを生成
+  //   $path = __DIR__ . '/' . str_replace('\\', '/', $class) . '.class.php';
 
-    // クラスファイルが存在する場合、読み込む
-    if (file_exists($path)) {
-      require_once $path;
-    }
-  }
+  //   // クラスファイルが存在する場合、読み込む
+  //   if (file_exists($path)) {
+  //     require_once $path;
+  //   }
+  // }
 }
 
-spl_autoload_register(['Src\Bootstrap', 'loadClass']);
+// spl_autoload_register(['Src\Bootstrap', 'loadClass']);
