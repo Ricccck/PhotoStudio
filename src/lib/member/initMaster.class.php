@@ -29,9 +29,9 @@ class initMaster
     return [$yearArr, $monthArr, $dayArr];
   }
 
-  public static function getGender()
-  {
-    $genderArr = ['1' => '男性', '2' => '女性'];
-    return $genderArr;
-  }
+  // public static function getGender()
+  // {
+  //   $genderArr = ['1' => '男性', '2' => '女性'];
+  //   return $genderArr;
+  // }
 }
