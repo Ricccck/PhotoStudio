@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="{{constant('photostudio\\Bootstrap::APP_URL')}}/css/list.css" rel="stylesheet" type="text/css"/>
+	</head>
+
+	<body>
+		<div id="">
+			<div class="header">
+				<h3>SHOPPING<span>ー商品リストー</span>
+				</h3>
+			</div>
+			<div class="side">
+				<p>MENU</p>
+			</div>
+			<div id="photo_list">
+				{% for value in dataArr %}
+					<div class="photo">
+           <img src="upload/{{value.photo_url}}" href="{{constant('photostudio\\Bootstrap::ENTRY_URL')}}detail.php?item_id={{value.photo_id}}">
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+</html>
