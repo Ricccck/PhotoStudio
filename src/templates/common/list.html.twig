@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/list.css" rel="stylesheet" type="text/css"/>
+		<title>PhotoStudio</title>
+	</head>
+
+	<body>
+		{% include 'common/header.html.twig' %}
+
+
+		<div id="list-body">
+			<div id="category-list">
+				<ul>
+						<li class="category">
+							<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}list.php">
+								全て
+							</a>
+						</li>
+					{% for value in ctgArr %}
+						<li class="category">
+							<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}list.php?ctg_id={{value.category_id}}">
+								{{value.category}}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<div id="contents">
+				<h1 class="title">
+					{{dataArr.ctg_name}}
+				</h1>
+
+				<div id="photo-search">
+					<form method="get" id="search-form" action="list.php">
+						<input type="hidden" name="ctg_id" value={{dataArr.ctg_id}}>
+						<input id="search-window" type="search" name="keyword" placeholder="キーワードを入力">
+						<button id="search-btn">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</form>
+				</div>
+
+				<div id="photo-list">
+					{% for value in photoArr %}
+						<div class="photo">
+							<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}detail.php?photo_id={{value.photo_id}}">
+								<img src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}sample/{{value.sample_url}}" alt="{{value.photo_title}}">
+								<div class="photo-title">
+									<p>
+										{{value.photo_title}}
+									</p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

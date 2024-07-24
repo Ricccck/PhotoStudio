@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/login.css" rel="stylesheet" type="text/css"/>
+		<title>ログイン</title>
+	</head>
+
+	<body>
+		<div class="header">
+			<h1 class="logo">
+				<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}home.php">
+					PhotoStudio
+				</a>
+			</h1>
+		</div>
+		
+		<div class="login-body">
+			<div class="card">
+				<h1 id="title">ログイン</h1>
+				<div id="login-form">
+					<form method="post" action="login.php">
+						<div id="mail-input">
+							<div>メールアドレス<span class="red">*</span>
+							</div>
+							<div>
+								<input class="input" type="text" name="email" placeholder="もしくはユーザーネームを入力" value="" size="30">
+								{% if errArr.email | length > 0 %}
+									<div class="red">{{errArr.email}}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div id="pass-form">
+							<div id="pass-titile">パスワード<span class="red">*</span>
+							</div>
+							<div id="pass-input">
+								<input class="input" type="password" name="password" value="" size="30">
+								{% if errArr.password | length > 0 %}
+									<div class="red">{{errArr.password}}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div id="which-user">
+							<input type="checkbox" id="check-customer" name="customer"/>
+							<label for="customer">購入者</label>
+							<input type="checkbox" id="check-client" name="client"/>
+							<label for="client">販売者</label>
+							{% if errArr.check | length > 0 %}
+								<div class="red">{{errArr.check}}</div>
+							{% endif %}
+						</div>
+						<div id="submit-btn">
+							<input type="submit" name="login" value="ログイン">
+							{% if errArr.login | length > 0 %}
+								<div class="red">{{errArr.login}}</div>
+							{% endif %}
+						</div>
+					</form>
+					<div id="signup">
+						<p>
+							<a href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}cusRegist.php'>
+								まだアカウントをお持ちでない場合
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

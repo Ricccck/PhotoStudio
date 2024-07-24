@@ -1,0 +1,25 @@
+<div class="header">
+	<h1 class="logo">
+		<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}home.php">
+			PhotoStudio
+		</a>
+	</h1>
+	<div id="greeting">
+		こんにちは
+		{{userArr.username}}
+		さん
+	</div>
+	<div id="login-form">
+		{% if userArr.username is same as ('Guest') %}
+			<input type="button" name="regist" value="会員登録" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}cusRegist.php'">
+		{% else %}
+			<input type="button" name="mypage" value="マイページ" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}mypage.php'">
+		{% endif %}
+
+		{% if userArr.username is not same as ('Guest') %}
+			<input type="button" name="logout" value="ログアウト" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}logout.php'">
+		{% else %}
+			<input type="button" name="login" value="ログイン" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}login.php'">
+		{% endif %}
+	</div>
+</div>

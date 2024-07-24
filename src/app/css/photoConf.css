@@ -1,0 +1,107 @@
+#photo-conf-body {
+  display: flex;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+form {
+  margin-bottom: 0;
+}
+
+#img-div {
+  margin-bottom: 30px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+#upload-img-div,
+#sample-img-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#upload-img-div h2 {
+  text-align: center;
+}
+
+#upload-img {
+  width: 90%;
+}
+#sample-img {
+  width: 70%;
+}
+
+#img-info {
+  padding: 30px;
+  height: 100%;
+  width: 500px;
+  background-color: rgb(208, 217, 232);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  flex-direction: column;
+}
+
+#title-div,
+#client-name-div,
+#category-div,
+#tags-div,
+#price-div{
+  margin-bottom: 20px;
+}
+
+#tags{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.img-tag{
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 3px 7px;
+  border: 1px solid;
+  border-color: rgb(126, 126, 126);
+  background-color: white;
+  border-radius: 0.1cm;
+}
+
+.info-str {
+  font-size: 24px;
+}
+
+#img-price {
+  margin-top: 30px;
+  font-size: 36px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#price {
+  margin-left: 10px;
+}
+
+#submit-form {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#submit-form input {
+  border-radius: 0.1cm;
+  margin-right: 10px;
+  width: 30%;
+  height: 50px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submit-form input:hover {
+  background-color: rgb(87, 97, 162);
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/download.css" rel="stylesheet" type="text/css"/>
+		<title>PhotoStudio</title>
+	</head>
+
+	<body>
+		{% include 'header.html.twig' %}
+
+		<div id="contents">
+			<h1 class="title">
+				購入商品ダウンロード
+			</h1>
+
+				<div id="download-list">
+					<ul>
+						{% for value in crtArr %}
+							<li class="item">
+								<div>
+									<div class="item-title">
+										{{value.photo_title}}
+									</div>
+									<div class="item-img">
+										<img src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}upload/{{value.photo_url}}" alt="{{value.photo_title}}">
+									</div>
+								</div>
+								<div class="btn-div">
+									<form method="get">
+										<input type="hidden" name="photo_id" value="{{value.photo_id}}">
+										<input type="submit" value="ダウンロード">
+									</form>
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+		</div>
+	</body>
+</html>

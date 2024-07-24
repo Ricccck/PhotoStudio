@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>画像投稿</title>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/post.css" rel="stylesheet" type="text/css"/>
+		<script src="js/addTag.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<h1 class="logo">
+				<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}home.php">
+					PhotoStudio
+				</a>
+			</h1>
+			<div id="login-form">
+				<input type="button" name="logout" value="ログアウト" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}logout.php'">
+			</div>
+		</div>
+
+		<div id="post-body">
+			<form id="form" method="post" action="photoConf.php" enctype="multipart/form-data">
+				<div id="image-form">
+					<div id="drop-area">
+						<p>画像をドラッグ＆ドロップするか、<br>参照をクリックして選択してください。</p>
+						<input type="file" id="image" accept="image/*" name="image"/>
+						<label for="image">
+							参照
+						</label>
+						{% if errArr.image | length > 0 %}
+							<div class="red">{{errArr.image}}</div>
+						{% endif %}
+						{% if errArr.image_min_size | length > 0 %}
+							<div class="red">{{errArr.image_min_size}}</div>
+						{% endif %}
+						{% if errArr.image_max_size | length > 0 %}
+							<div class="red">{{errArr.image_max_size}}</div>
+						{% endif %}
+						{% if errArr.image_mime | length > 0 %}
+							<div class="red">{{errArr.image_mime}}</div>
+						{% endif %}
+						{% if errArr.image_size | length > 0 %}
+							<div class="red">{{errArr.image_size}}</div>
+						{% endif %}
+					</div>
+
+					<div id="preview"></div>
+				</div>
+
+				<div id="photo-info">
+					<h1 id="title">投稿画像情報</h1>
+					<div id="info-content">
+						<div id="title-form">
+							<div>画像タイトル<span class="red">*</span>
+							</div>
+							<div id="title-input">
+								<input type="text" name="photo_title" value="{{dataArr.photo_title}}">
+								{% if errArr.photo_title | length > 0 %}
+									<div class="red">{{errArr.photo_title}}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div id="ctg-form">
+							<div>カテゴリー<span class="red">*</span>
+							</div>
+							<div id="ctg-input">
+								<select name="category">
+									<option value="">カテゴリーを選択</option>
+									{% for value in ctgArr %}
+										<option value={{value.category}}>{{value.category}}</option>
+									{% endfor %}
+								</select>
+								{% if errArr.category | length > 0 %}
+									<div class="red">{{errArr.category}}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div id="tag-form">
+							<div>タグ<span class="red">*</span>
+							</div>
+							<div id="tag-input">
+								<div id="tags">
+									<input class="tag" type="text" name="tags[0]" value="{{dataArr.tag[0]}}">
+									<input class="tag" type="text" name="tags[1]" value="{{dataArr.tag[1]}}">
+									<input class="tag" type="text" name="tags[2]" value="{{dataArr.tag[2]}}">
+									<input class="tag" type="text" name="tags[3]" value="{{dataArr.tag[3]}}">
+									<input class="tag" type="text" name="tags[4]" value="{{dataArr.tag[4]}}">
+									{% for index, value in dataArr.tags %}
+										{% if index > 4 %}
+											<input type="text" name="tag" value="{{dataArr.tags[index]}}">
+										{% endif %}
+									{% endfor %}
+								</div>
+								<input type="button" onclick="addTag()" value="タグを追加する">
+							</div>
+							{% if errArr.tags | length > 0 %}
+								<div class="red">{{errArr.tags}}</div>
+							{% endif %}
+						</div>
+						<div id="price-info">
+							<div>利用料金</div>
+							<div>
+								価格はアップロードした画像の画質によって自動的に設定されます。<br>
+								<a href="">詳しくはこちら</a>
+							</div>
+						</div>
+						<div id="submit-form">
+							<input id="submit-button" type="submit" name="confirm" value="審査登録"/>
+						</div>
+						<input type="hidden" name="client_id" value="{{dataArr.client_id}}">
+						<input type="hidden" name="client_name" value="{{dataArr.client_name}}">
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="js/fileDrop.js"></script>
+	</body>
+</html>

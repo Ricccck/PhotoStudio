@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+		<link rel="stylesheet" href="css/common.css" type="text/css"/>
+		<link rel="stylesheet" href="css/home.css" type="text/css"/>
+		<title>PhotoStudio</title>
+	</head>
+
+	<body>
+		{% include 'common/header.html.twig' %}
+
+		<div id="home-body">
+			<div id="photo-search">
+				<div id="search-bg-img" style="background-image: url('{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}upload/{{dataArr.random_url}}');">
+					<form method="get" id="search-form" action="list.php">
+						<input id="search-window" type="search" name="keyword" placeholder="キーワードを入力">
+						<button id="search-btn">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<div id="random-photo">
+				<h1 class="title">
+					ランダム紹介
+				</h1>
+				<div class="photo-list">
+					{% for value in photoArr %}
+						<div class="item">
+							<ul>
+								<li class="image">
+									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}detail.php?photo_id={{value.photo_id}}">
+										<img src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}sample/{{value.sample_url}}" alt="現在利用できません"/>
+									</a>
+								</li>
+								<li class="name">
+									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}detail.php?photo_id={{value.photo_id}}">{{value.photo_title}}</a>
+								</li>
+							</ul>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div id="choice-category">
+				<h1 class="title">
+					カテゴリーから探す
+				</h1>
+				<div id="category-list">
+					{% for value in ctgArr %}
+						<div class="category">
+							<div class="ctg-bg-img" style="background-image: url('{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}/ctgImage/{{value.category}}.jpg');">
+								<div class="ctg-str">
+									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}list.php?ctg_id={{value.category_id}}">
+										{{value.category}}
+									</a>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		{% include './common/footer.html.twig' %}
+	</body>
+</html>

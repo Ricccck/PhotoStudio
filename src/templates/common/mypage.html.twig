@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/mypage.css" rel="stylesheet" type="text/css"/>
+		<title>マイページ</title>
+	</head>
+
+	<body>
+		{% include 'common/header.html.twig' %}
+
+
+		<div class="mypage-body">
+			<div class="card">
+				<h1 id="title">マイページ</h1>
+				<div id="mypage-content">
+					<div class="info-div">
+						<div>ユーザーネーム</div>
+						<div class="info-str">
+							{{userArr.username}}
+						</div>
+					</div>
+					<div class="info-div">
+						<div>お名前(氏名)</div>
+						<div class="info-str">
+							{{userArr.last_name}}
+							{{userArr.first_name}}
+						</div>
+					</div>
+					<div class="info-div">
+						<div>お名前(かな)</div>
+						<div class="info-str">
+							{{userArr.last_name_kana}}
+							{{userArr.first_name_kana}}
+						</div>
+					</div>
+					{% if userArr.company_name is not empty %}
+						<div class="info-div">
+							<div>会社名</div>
+							<div class="info-str">
+								{{userArr.company_name}}
+							</div>
+						</div>
+					{% endif %}
+					<div class="info-div">
+						<div>メールアドレス</div>
+						<div class="info-str">
+							{{userArr.email}}
+						</div>
+					</div>
+					<div class="info-div">
+						<div>電話番号</div>
+						<div class="info-str">
+							{{userArr.phone_number}}
+						</div>
+					</div>
+					<div class="info-div">
+						<div>郵便番号</div>
+						<div class="info-str">
+							〒{{userArr.zip}}
+						</div>
+					</div>
+					<div class="info-div">
+						<div>住所</div>
+						<div class="info-str">
+							{{userArr.pref}}{{userArr.city}}{{userArr.town}}
+						</div>
+					</div>
+					<div class="info-div">
+						<div>ホームページ</div>
+						<div class="info-str">
+							{{userArr.website}}
+						</div>
+					</div>
+					<div id="button-div">
+						{% if userArr.client_id is not empty %}
+							<input type="button" name="post" value="画像を投稿する" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}post.php'">
+							<input type="button" name="postList" value="投稿画像を確認する" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}postList.php'">
+						{% endif %}
+						{% if userArr.customer_id is not empty %}
+							<input type="button" name="cart" value="カートを確認する" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}cart.php'">
+							<input type="button" name="download" value="購入画像を確認する" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}download.php'">
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

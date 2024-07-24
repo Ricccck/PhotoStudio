@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>審査画像確認</title>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/photoConf.css" rel="stylesheet" type="text/css"/>
+	</head>
+
+	<body>
+		<div class="header">
+			<h3>
+				PhotoStudio
+			</h3>
+			<div id="login-form">
+				<input type="button" name="logout" value="ログアウト" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}logout.php'">
+			</div>
+		</div>
+
+		<form method="post" action="photoConf.php">
+			<div id="photo-conf-body">
+				<div id="img-div">
+					<div id="upload-img-div">
+						<h2>投稿画像</h2>
+						<img id="upload-img" src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}public/upload/{{dataArr.photo_url}}">
+					</div>
+					<div id="sample-img-div">
+						<h2>投稿画像（サンプル）</h2>
+						<img id="sample-img" src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}public/sample/{{dataArr.sample_url}}">
+					</div>
+				</div>
+
+				<div id="img-info">
+					<div id="title-div">
+						<div>タイトル</div>
+						<div id="img-title" class="info-str">
+							{{dataArr.photo_title}}
+						</div>
+					</div>
+					<div id="client-name-div">
+						<div>登録者名</div>
+						<div id="img-client" class="info-str">
+							{{dataArr.client_name}}
+						</div>
+					</div>
+					<div id="category-div">
+						<div>カテゴリー</div>
+						<div id="img-category" class="info-str">
+							{{dataArr.category}}
+						</div>
+					</div>
+					<div id="tags-div">
+						<div>タグ</div>
+						<div id="tags">
+							{% for value in dataArr.tags %}
+								<div class="img-tag">{{value}}</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div id="price-div">
+						<div>
+							価格
+							<span id="is-free-div">
+								<input type="checkbox" id="is-free" name="is_free" value="true">
+								<lable for="isFree">この画像を無償で提供する</label>
+							</span>
+						</div>
+						<div id="img-price" class="info-str">
+							¥<span id="price">{{dataArr.price}}</span>-
+						</div>
+
+					</div>
+					<div id="submit-form">
+						<input type="submit" name="complete" value="登録完了">
+						<input type="submit" name="back" value="戻る">
+					</div>
+					{% for key, value in dataArr %}
+						{% if value is iterable %}
+							{% for v in value %}
+								<input type="hidden" name="{{key}}[]" value="{{v}}">
+							{% endfor %}
+						{% else %}
+							<input type="hidden" name="{{key}}" value="{{value}}">
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</form>
+		<script src="js/addCommas.js"></script>
+	</body>
+</html>

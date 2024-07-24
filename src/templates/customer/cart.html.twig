@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/cart.css" rel="stylesheet" type="text/css"/>
+		<title>購入カート</title>
+	</head>
+
+	<body>
+		{% include 'header.html.twig' %}
+
+		<div id="contents">
+			<h1 class="title">
+				購入カート
+			</h1>
+
+			<form method="post" id="cart-body">
+				<div id="cart-list">
+
+					<ul>
+						{% for value in crtArr %}
+							<li class="item">
+								<div class="item-checkbox">
+									<input type="checkbox" name="crt_ids[]" value="{{value.crt_id}}">
+								</div>
+								<div class="item-img">
+									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}detail.php?photo_id={{value.photo_id}}">
+										<img src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}sample/{{value.sample_url}}" alt="{{value.photo_title}}">
+									</a>
+								</div>
+								<div class="item-title">
+									<div>タイトル</div>
+									<div>
+										{{value.photo_title}}
+									</div>
+								</div>
+								<div class="item-price">
+									<div>金額</div>
+									<div>
+										¥<span class="price">{{value.price}}</span>-
+									</div>
+								</div>
+								<div class="delete-btn-div">
+									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}cart.php?crt_id={{value.crt_id}}">
+										<input type="button" value="削除">
+									</a>
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div id="total-div">
+					<div id="total-price">
+						<div>合計金額</div>
+						¥<span id="price">{{totalPrice}}</span>-
+					</div>
+					<div id="purchase-btn-div">
+						<input type="submit" name="purchase" value="購入する">
+					</div>
+				</div>
+			</form>
+		</div>
+
+		{% include 'footer.html.twig' %}
+		
+		<script src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}js/addCommas.js"></script>
+	</body>
+</html>
