@@ -28,9 +28,8 @@ $crt_id = (isset($_GET['crt_id']) === true && preg_match('/^\d+$/', $_GET['crt_i
 $userArr = [];
 if (isset($_SESSION['customer'])) {
   $userArr = $customer->getData($_SESSION['customer']);
-  $userArr['user_name'] = $userArr['family_name'] . ' ' . $userArr['first_name'];
 } else {
-  $userArr['user_name'] = 'Guest';
+  $userArr['username'] = 'Guest';
 }
 $customer_id = $userArr['customer_id'];
 
@@ -68,5 +67,5 @@ $context = [];
 $context['crtArr'] = $crtArr;
 $context['userArr'] = $userArr;
 $context['totalPrice'] = $totalPrice;
-$template = $twig->load('cart.html.twig');
+$template = $twig->load('customer/cart.html.twig');
 $template->display($context);

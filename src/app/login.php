@@ -55,5 +55,6 @@ if ($isCustomer) {
 
 
 $context['errArr'] = $errArr;
+$context['user'] = 'guest';
 $template = $twig->load('authentication/login.html.twig');
 $template->display($context);

@@ -24,163 +24,165 @@
 		<div class="regist-body">
 			<div class="card">
 				<h1 class="title">購入者登録</h1>
-				<form method="post" action="cusConfirm.php">
-					<div id="username-form">
-						<div>
-							ユーザーネーム<span class="red">*</span>
-						</div>
-						<div id="username-input">
-							<input type="text" name="username" placeholder="userName123" value="{{dataArr.username}}">
-							{% if errArr.username | length > 0 %}
-								<div class="red">{{errArr.username}}</div>
-							{% endif %}
-						</div>
-
-					</div>
-					<div id="name-form">
-						<div>
-							お名前（氏名）<span class="red">*</span>
-						</div>
-						<div>
-							<div id="name-input">
-								<input type="text" name="last_name" placeholder="佐藤" value="{{dataArr.last_name}}">
-								<input type="text" name="first_name" placeholder="太郎" value="{{dataArr.first_name}}">
-
+				<div id="regist-form">
+					<form method="post" action="cusConfirm.php">
+						<div id="username-form">
+							<div>
+								ユーザーネーム<span class="red">*</span>
 							</div>
-							{% if errArr.last_name | length > 0 %}
-								<div class="red">{{errArr.last_name}}</div>
-							{% endif %}
-							{% if errArr.first_name | length > 0 %}
-								<div class="red">{{errArr.last_name}}</div>
-							{% endif %}
-						</div>
-					</div>
-					<div id="name-kana-form">
-						<div>
-							お名前（かな）<span class="red">*</span>
-						</div>
-						<div id="name-kana-input">
-							<input type="text" name="last_name_kana" placeholder="さとう" value="{{dataArr.last_name_kana}}">
-							<input type="text" name="first_name_kana" placeholder="たろう" value="{{dataArr.first_name_kana}}">
-						</div>
-						{% if errArr.last_name_kana | length > 0 %}
-							<div class="red">{{errArr.last_name_kana}}</div>
-						{% endif %}
-						{% if errArr.first_name_kana | length > 0 %}
-							<div class="red">{{errArr.first_name_kana}}</div>
-						{% endif %}
-					</div>
-					<div class="email-form">
-						<div>
-							メールアドレス
-							<span class="red">*</span>
-						</div>
-						<div id="rmail-input">
-							<input type="text" name="email" placeholder="xxxx@example.com" value="{{dataArr.email}}" size="40">
-							{% if errArr.email | length > 0 %}
-								<div class="red">{{errArr.email}}</div>
-							{% endif %}
-						</div>
-					</div>
-					<div class="tel-form">
-						<div>
-							電話番号
-							<span class="red">*</span>
-						</div>
-						<div>
-							<div id="tel-input">
-								<input type="text" name="tel1" placeholder="090" value="{{dataArr.tel1}}" size="6" maxlength="6">
-								<input type="text" name="tel2" placeholder="xxxx" value="{{dataArr.tel2}}" size="6" maxlength="6">
-								<input type="text" name="tel3" placeholder="xxxx" value="{{dataArr.tel3}}" size="6" maxlength="6">
+							<div id="username-input">
+								<input type="text" name="username" placeholder="userName123" value="{{dataArr.username}}">
+								{% if errArr.username | length > 0 %}
+									<div class="red">{{errArr.username}}</div>
+								{% endif %}
 							</div>
-							{% if errArr.tel1 | length > 0 %}
-								<div class="red">{{errArr.tel1}}</div>
-							{% endif %}
-							{% if errArr.tel2 | length > 0 %}
-								<div class="red">{{errArr.tel2}}</div>
-							{% endif %}
-							{% if errArr.tel3 | length > 0 %}
-								<div class="red">{{errArr.tel3}}</div>
-							{% endif %}
+
 						</div>
-					</div>
-					<div class="sex-form">
-						<div>
-							性別<span class="red">*</span>
+						<div id="name-form">
+							<div>
+								お名前（氏名）<span class="red">*</span>
+							</div>
+							<div>
+								<div id="name-input">
+									<input type="text" name="last_name" placeholder="佐藤" value="{{dataArr.last_name}}">
+									<input type="text" name="first_name" placeholder="太郎" value="{{dataArr.first_name}}">
+
+								</div>
+								{% if errArr.last_name | length > 0 %}
+									<div class="red">{{errArr.last_name}}</div>
+								{% endif %}
+								{% if errArr.first_name | length > 0 %}
+									<div class="red">{{errArr.last_name}}</div>
+								{% endif %}
+							</div>
 						</div>
-						<div id="sex-input">
-							<select name="sex">
-								{% for key, value in sexArr %}
-									<option value={{key}}>{{value}}</option>
-								{% endfor %}
-							</select>
-							{% if errArr.sex | length > 0 %}
-								<br><span class="red">{{errArr.sex}}</span>
+						<div id="name-kana-form">
+							<div>
+								お名前（かな）<span class="red">*</span>
+							</div>
+							<div id="name-kana-input">
+								<input type="text" name="last_name_kana" placeholder="さとう" value="{{dataArr.last_name_kana}}">
+								<input type="text" name="first_name_kana" placeholder="たろう" value="{{dataArr.first_name_kana}}">
+							</div>
+							{% if errArr.last_name_kana | length > 0 %}
+								<div class="red">{{errArr.last_name_kana}}</div>
 							{% endif %}
-						</div>
-					</div>
-					<div class="address-form h-adr">
-						<input type="hidden" class="p-country-name" value="Japan">
-						<div>
-							郵便番号<span class="red">*</span>
-						</div>
-						<div>
-							<input class="p-postal-code" type="text" size="8" maxlength="8" name="zip" placeholder="〒000-0000" value="{{dataArr.zip}}">
-							{% if errArr.zip | length > 0 %}
-								<div class="red">{{errArr.zip}}</div>
+							{% if errArr.first_name_kana | length > 0 %}
+								<div class="red">{{errArr.first_name_kana}}</div>
 							{% endif %}
 						</div>
-						<div>
-							住所（都道府県）<span class="red">*</span>
+						<div class="email-form">
+							<div>
+								メールアドレス
+								<span class="red">*</span>
+							</div>
+							<div id="rmail-input">
+								<input type="text" name="email" placeholder="xxxx@example.com" value="{{dataArr.email}}" size="40">
+								{% if errArr.email | length > 0 %}
+									<div class="red">{{errArr.email}}</div>
+								{% endif %}
+							</div>
 						</div>
-						<div class="address-input">
-							<input type="text" class="p-region" name="pref" value="{{dataArr.pref}}" size="40">
-							{% if errArr.pref | length > 0 %}
-								<span class="red">{{errArr.pref}}</span>
-							{% endif %}
+						<div class="tel-form">
+							<div>
+								電話番号
+								<span class="red">*</span>
+							</div>
+							<div>
+								<div id="tel-input">
+									<input type="text" name="tel1" placeholder="090" value="{{dataArr.tel1}}" size="6" maxlength="6">
+									<input type="text" name="tel2" placeholder="xxxx" value="{{dataArr.tel2}}" size="6" maxlength="6">
+									<input type="text" name="tel3" placeholder="xxxx" value="{{dataArr.tel3}}" size="6" maxlength="6">
+								</div>
+								{% if errArr.tel1 | length > 0 %}
+									<div class="red">{{errArr.tel1}}</div>
+								{% endif %}
+								{% if errArr.tel2 | length > 0 %}
+									<div class="red">{{errArr.tel2}}</div>
+								{% endif %}
+								{% if errArr.tel3 | length > 0 %}
+									<div class="red">{{errArr.tel3}}</div>
+								{% endif %}
+							</div>
 						</div>
-						<div>
-							住所（市区町村）<span class="red">*</span>
+						<div class="sex-form">
+							<div>
+								性別<span class="red">*</span>
+							</div>
+							<div id="sex-input">
+								<select name="sex">
+									{% for key, value in sexArr %}
+										<option value={{key}}>{{value}}</option>
+									{% endfor %}
+								</select>
+								{% if errArr.sex | length > 0 %}
+									<br><span class="red">{{errArr.sex}}</span>
+								{% endif %}
+							</div>
 						</div>
-						<div class="address-input">
-							<input type="text" class="p-locality p-street-address" name="city" value="{{dataArr.city}}" size="40">
-							{% if errArr.city | length > 0 %}
-								<span class="red">{{errArr.city}}</span>
-							{% endif %}
+						<div class="address-form h-adr">
+							<input type="hidden" class="p-country-name" value="Japan">
+							<div>
+								郵便番号<span class="red">*</span>
+							</div>
+							<div>
+								<input class="p-postal-code" type="text" size="8" maxlength="8" name="zip" placeholder="〒000-0000" value="{{dataArr.zip}}">
+								{% if errArr.zip | length > 0 %}
+									<div class="red">{{errArr.zip}}</div>
+								{% endif %}
+							</div>
+							<div>
+								住所（都道府県）<span class="red">*</span>
+							</div>
+							<div class="address-input">
+								<input type="text" class="p-region" name="pref" value="{{dataArr.pref}}" size="40">
+								{% if errArr.pref | length > 0 %}
+									<span class="red">{{errArr.pref}}</span>
+								{% endif %}
+							</div>
+							<div>
+								住所（市区町村）<span class="red">*</span>
+							</div>
+							<div class="address-input">
+								<input type="text" class="p-locality p-street-address" name="city" value="{{dataArr.city}}" size="40">
+								{% if errArr.city | length > 0 %}
+									<span class="red">{{errArr.city}}</span>
+								{% endif %}
+							</div>
+							<div>
+								住所（番地以降）<span class="red">*</span>
+							</div>
+							<div class="address-input">
+								<input type="text" class="p-extended-address" name="town" value="{{dataArr.town}}" size="40">
+								{% if errArr.town | length > 0 %}
+									<span class="red">{{errArr.town}}</span>
+								{% endif %}
+							</div>
 						</div>
-						<div>
-							住所（番地以降）<span class="red">*</span>
+						<div class="pass-form">
+							<div>パスワード<span class="red">*</span>
+							</div>
+							<div id="pass-input">
+								<input type="password" name="password" placeholder="大文字小文字数字を含む8~20桁の半角英数字で入力してください。" value="{{dataArr.password}}" id="password" size="40">
+								{% if errArr.password | length > 0 %}
+									<span class="red">{{errArr.password}}</span>
+								{% endif %}
+							</div>
+							<div>パスワード(確認)<span class="red">*</span>
+							</div>
+							<div>
+								<input type="password" name="pass_conf" value="" id="pass_conf" size="40">
+								{% if errArr.pass_conf | length > 0 %}
+									<span class="red">{{errArr.pass_conf}}</span>
+								{% endif %}
+							</div>
 						</div>
-						<div class="address-input">
-							<input type="text" class="p-extended-address" name="town" value="{{dataArr.town}}" size="40">
-							{% if errArr.town | length > 0 %}
-								<span class="red">{{errArr.town}}</span>
-							{% endif %}
+						<div id="submit-btn">
+							<input type="submit" name="confirm" value="登録確認">
 						</div>
-					</div>
-					<div class="pass-form">
-						<div>パスワード<span class="red">*</span>
-						</div>
-						<div id="pass-input">
-							<input type="password" name="password"  placeholder="大文字小文字数字を含む8~20桁の半角英数字で入力してください。" value="{{dataArr.password}}" id="password" size="40">
-							{% if errArr.password | length > 0 %}
-								<span class="red">{{errArr.password}}</span>
-							{% endif %}
-						</div>
-						<div>パスワード(確認)<span class="red">*</span>
-						</div>
-						<div>
-							<input type="password" name="pass_conf" value="" id="pass_conf" size="40">
-							{% if errArr.pass_conf | length > 0 %}
-								<span class="red">{{errArr.pass_conf}}</span>
-							{% endif %}
-						</div>
-					</div>
-					<div class="submit-btn">
-						<input type="submit" name="confirm" value="登録確認">
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
-		</div>
+		</body>
 	</body>
 </html>

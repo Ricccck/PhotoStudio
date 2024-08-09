@@ -30,9 +30,8 @@ $err_msg = '';
 $userArr = [];
 if (isset($_SESSION['customer'])) {
   $userArr = $customer->getData($_SESSION['customer']);
-  $userArr['user_name'] = $userArr['family_name'] . ' ' . $userArr['first_name'];
 } else {
-  $userArr['user_name'] = 'Guest';
+  $userArr['username'] = 'Guest';
 }
 
 
@@ -68,5 +67,5 @@ if ($photo_id !== '') {
 $context['userArr'] = $userArr;
 $context['crtArr'] = $crtArr;
 $context['err_msg'] = $err_msg;
-$template = $twig->load('download.html.twig');
+$template = $twig->load('customer/download.html.twig');
 $template->display($context);

@@ -19,7 +19,7 @@ class Cart
     $arrVal = ($customerId !== '') ? [$customerId, 0, 0] : [];
     $res = $this->db->select($table, $col, $where, $arrVal);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    return ($res !== false && count($res) !== 0) ? $res : [];
   }
 
   public function getPurchasedPhotoList($customerId)
@@ -37,8 +37,10 @@ class Cart
   public function culcTotalPrice($dataArr)
   {
     $total = 0;
-    foreach ($dataArr as $arr) {
-      $total += intval($arr['price']);
+    if (count($dataArr) !== 0) {
+      foreach ($dataArr as $arr) {
+        $total += intval($arr['price']);
+      }
     }
 
     return $total;

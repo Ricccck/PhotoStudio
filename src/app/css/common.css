@@ -1,41 +1,16 @@
 body {
-  margin: 0;
-  background: linear-gradient(white, whitesmoke, rgb(57, 103, 176));
   min-height: 100vh;
+  background: linear-gradient(white, whitesmoke, rgb(57, 103, 176));
 }
 
-.header {
-  background-color: black;
-  color: white;
-  height: 60px;
+.contents {
+  margin-top: 60px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 0 20px; 
 }
 
-.logo a {
-  text-decoration: none;
-  color: white; 
-  font-size: 24px; 
-  font-weight: bold; 
-}
-
-#login-form input[type="button"] {
-  padding: 10px 20px;
-  margin-right: 10px;
-  background-color: #cae1ff;
-  border: none;
-  border-radius: 5px;
-  color: #333333;
-  cursor: pointer;
-}
-
-#login-form input[type="button"]:hover {
-  background-color: white;
-}
-
-
-.red{
+.red {
   color: red;
 }
