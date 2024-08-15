@@ -1,0 +1,103 @@
+#list-body {
+  display: flex;
+}
+
+#category-list {
+  width: 20%;
+}
+
+#contents{
+  width: 80%;
+}
+
+#photo-search{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#search-form{
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+
+  background-color: white;
+  border: solid 2px #666;
+  border-radius: 4px;
+}
+
+#search-window{
+  width: 400px;
+  padding: 0 15px;
+  border-radius: initial;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  outline: 0;
+}
+
+#search-btn{
+  width: 50px;
+  background: transparent;
+  border-radius: initial;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+}
+
+#photo-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.photo {
+  height: 200px;
+  margin: 10px;
+  position: relative;
+}
+
+.photo a {
+  height: 200px;
+  width: 100%;
+}
+
+.photo img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-title {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white; 
+  text-align: center;
+  font-size: 20px;
+  opacity:0 ;
+  transition: all 0.3s ease; 
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.photo-title p {
+  margin: 10px;
+}
+
+.photo-title:hover {
+  opacity: 1;
+}

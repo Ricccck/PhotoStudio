@@ -1,9 +1,9 @@
 <?php
-namespace Src\lib;
+namespace Photostudio\lib;
 
 class PDODatabase
 {
-  private $dbh = null;
+  public $dbh = null;
   private $db_host = '';
   private $db_user = '';
   private $db_pass = '';
@@ -68,7 +68,7 @@ class PDODatabase
     $res = $stmt->execute($arrVal);
 
     if ($res === false) {
-      $this->catchError($stmt->errorInfo());
+      var_dump( 'select : ' . $this->catchError($stmt->errorInfo()));
     }
 
     $data = [];
@@ -89,7 +89,7 @@ class PDODatabase
     $res = $stmt->execute($arrVal);
 
     if ($res === false) {
-      $this->catchError($stmt->errorInfo());
+      var_dump('count : ' . $this->catchError($stmt->errorInfo()));
     }
 
     $result = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -173,7 +173,7 @@ class PDODatabase
     $res = $stmt->execute($insDataVal);
 
     if ($res === false) {
-      $this->catchError($stmt->errorInfo());
+      var_dump('insert : ' . $this->catchError($stmt->errorInfo()));
     }
 
     return $res;
@@ -202,7 +202,7 @@ class PDODatabase
     $res = $stmt->execute($updateData);
 
     if ($res === false) {
-      $this->catchError($stmt->errorInfo());
+      var_dump('update : ' . $this->catchError($stmt->errorInfo()));
     }
 
     return $res;
@@ -216,7 +216,7 @@ class PDODatabase
   private function catchError($errArr = [])
   {
     $errMsg = (!empty($errArr[2])) ? $errArr[2] : "";
-    die("SQLエラーが発生しました。" . $errArr[2]);
+    return "SQLエラーが発生しました。" . $errMsg;
   }
 
   private function makeLogFile()
@@ -227,7 +227,7 @@ class PDODatabase
       mkdir($logDir, 0777);
     }
 
-    $logPath = $logDir . '/shopping.log';
+    $logPath = $logDir . '/photostudio.log';
 
     if (!file_exists($logPath)) {
       touch($logPath);

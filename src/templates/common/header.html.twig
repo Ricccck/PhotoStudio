@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md bg-black fixed-top" data-bs-theme="dark">
+	<div class="container-fluid">
+		<a class="navbar-brand text-white fs-3 fw-bold" href="home.php">
+			<img width="30" height="30" class="d-inline-block align-text-top" src="public/logo-white.png" alt="logo-white.png">
+			PhotoStudio
+		</a>
+
+		<div class="text-white">
+			こんにちは
+			{{ userArr.username | e }}
+			さん
+		</div>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav ms-auto">
+				{% if userArr.username is same as 'Guest' %}
+					<li class="nav-item">
+						<a class="nav-link active" href="login.php">ログイン</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="cusRegist.php">会員登録</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link active" href="logout.php">ログアウト</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="mypage.php">マイページ</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
