@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md bg-black fixed-top" data-bs-theme="dark">
+	<div class="container-fluid">
+		<a class="navbar-brand text-white fs-3 fw-bold" href="home.php">
+			<img width="30" height="30" class="d-inline-block align-text-top" src="public/logo-white.png" alt="logo-white.png">
+			PhotoStudio
+		</a>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav ms-auto">
+				{% if user is same as 'customer' %}
+					<li class="nav-item">
+						<a class="nav-link active" href="cliRegist.php">販売登録</a>
+
+					</li>
+				{% elseif user is same as 'client' %}
+					<li class="nav-item">
+						<a class="nav-link active" href="cusRegist.php">購入登録</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link active" href="cusRegist.php">会員登録</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>

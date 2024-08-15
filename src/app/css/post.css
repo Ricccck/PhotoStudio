@@ -1,0 +1,140 @@
+#post-body{
+  margin-top: 100px;
+}
+
+#drop-area {
+  border: 2px dashed rgb(113, 125, 194);
+  border-radius: 2em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 300px;
+  margin: 20px auto;
+  background-color: rgb(204, 207, 227);
+  font-size: 24px;
+}
+
+#drop-area input[type="file"] {
+  display: none;
+}
+#drop-area label {
+  text-decoration: underline;
+  color: rgb(0, 94, 255);
+  cursor: pointer;
+}
+#drop-area label:hover {
+  color: blue;
+}
+
+#preview {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  padding-bottom: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev-img {
+  width: 80%;
+  height: auto;
+  margin: 10px 0;
+}
+
+.highlight {
+  border: 2px dashed rgb(2, 12, 68);
+  background-color: rgb(179, 184, 211);
+}
+
+#photo-info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  max-height: 40%;
+  width: 100%;
+  background-color: rgb(208, 217, 232);
+  padding: 10px 0;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#info-content {
+  width: 90%;
+  overflow: auto;
+  overflow: scroll;
+}
+
+#title-form,
+#ctg-form,
+#tag-form,
+#price-info{
+  margin-bottom: 20px;
+}
+
+#title-form input {
+  width: 90%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#ctg-form select {
+  width: 40%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#tag-input {
+  width: 30%;
+}
+
+#tag-input input {
+  width: 100%;
+}
+
+.tag {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#submit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#submit-button {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 80%;
+  height: 50px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submit-button:hover {
+  background-color: rgb(87, 97, 162);
+}

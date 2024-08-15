@@ -1,0 +1,21 @@
+{
+  "name": "ricccck/photostudio",
+  "description": "This is app by Ricccck",
+  "type": "project",
+  "require": {
+    "ramsey/uuid":"^4.0",
+    "twig/twig": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Photostudio\\": "src/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "vendor-dir": "vendor",
+    "platform": {
+      "php": "8.2"
+    }
+  }
+}

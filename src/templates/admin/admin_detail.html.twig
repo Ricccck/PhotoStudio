@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link href="css/detail.css" rel="stylesheet" type="text/css"/>
+		<title>商品詳細</title>
+	</head>
+
+	<body>
+		<div class="header">
+			<h1 class="logo">
+				<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}home.php">
+					PhotoStudio
+				</a>
+			</h1>
+		</div>
+    
+		<form method="post" action="adminDetail.php">
+			<div id="detail-body">
+				<div id="img-div">
+					<div id="sample-img-div">
+						<h2>画像（サンプル）</h2>
+						<img id="sample-img" src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}sample/{{photoArr.sample_url}}">
+					</div>
+				</div>
+
+				<div id="img-info">
+					<div id="title-div">
+						<div>タイトル</div>
+						<div id="img-title" class="info-str">
+							{{photoArr.photo_title}}
+						</div>
+					</div>
+					<div id="client-name-div">
+						<div>登録者名</div>
+						<div id="img-client" class="info-str">
+							{{photoArr.client_name}}
+						</div>
+					</div>
+					<div id="category-div">
+						<div>カテゴリー</div>
+						<div id="img-category" class="info-str">
+							{{photoArr.category}}
+						</div>
+					</div>
+					<div id="tags-div">
+						<div>タグ</div>
+						<div id="tags">
+							{% for value in photoArr.tags %}
+								<div class="img-tag">{{value}}</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div id="price-div">
+						<div>
+							価格
+						</div>
+						<div id="img-price" class="info-str">
+							¥<span id="price">{{photoArr.price}}</span>-
+						</div>
+					</div>
+					<div id="upload-date-div">
+						<div>
+							投稿日
+						</div>
+						<div id="img-upload-date" class="info-str">
+							{{photoArr.upload_date}}
+						</div>
+					</div>
+					<div id="submit-form">
+						<input type="hidden" name="photo_id" value="{{photoArr.photo_id}}">
+						
+            <input type="submit" name="examine" value="この写真を承認する">					
+          </div>
+				</div>
+			</div>
+		</form>
+		<script src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}javascript/addCommas.js"></script>
+	</body>
+</html>

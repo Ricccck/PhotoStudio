@@ -1,0 +1,16 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(white, whitesmoke, rgb(57, 103, 176));
+}
+
+.contents {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  color: red;
+}
