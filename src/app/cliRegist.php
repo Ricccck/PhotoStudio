@@ -43,6 +43,7 @@ foreach ($dataArr as $key => $value) {
 
 $context = [];
 
+$context['user'] = 'client';
 $context['sexArr'] = $sexArr;
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;

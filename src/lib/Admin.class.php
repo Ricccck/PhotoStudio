@@ -14,7 +14,7 @@ class Admin
   {
     $table = ' upload_photos up ';
     $col = ' photo_id, photo_url, sample_url ';
-    $where = ($ctg_id !== '') ? ' category = ? AND delete_flg = ? AND is_examined = ? ' : ' delete_flg = ? AND is_examined = ? ';
+    $where = ($ctg_id !== '') ? ' category = ? AND is_deleted = ? AND is_examined = ? ' : ' is_deleted = ? AND is_examined = ? ';
 
     $arrVal = ($ctg_id !== '') ? [$ctg_id, 0, 0] : [0, 0];
     $res = $this->db->select($table, $col, $where, $arrVal);
@@ -26,7 +26,7 @@ class Admin
   public function getPhotoDetailData($photo_id)
   {
     $table = ' upload_photos up JOIN clients c ON up.client_id = c.client_id JOIN price p ON up.price = p.price_id JOIN category ca ON up.category = ca.category_id ';
-    $col = ' photo_id, photo_title, c.client_name, ca.category, tags, sample_url, p.price, upload_date ';
+    $col = ' photo_id, photo_title, c.username, ca.category, tags, sample_url, p.price, upload_at ';
     $where = ($photo_id !== '') ? ' photo_id = ? ' : '';
 
     $arrVal = ($photo_id !== '') ? [$photo_id] : [];

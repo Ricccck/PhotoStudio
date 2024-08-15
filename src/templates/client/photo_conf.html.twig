@@ -2,31 +2,45 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<title>審査画像確認</title>
-		<link href="css/common.css" rel="stylesheet" type="text/css"/>
-		<link href="css/photoConf.css" rel="stylesheet" type="text/css"/>
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+
+		{# Bootstrap #}
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+		{# favicon #}
+		<link
+		rel="icon" href="/public/favicon-black.ico"/>
+
+		{# javascript #}
+		<script src="js/changeFavicon.js"></script>
+
+		{# css #}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+		<link rel="stylesheet" href="css/common.css" type="text/css"/>
+		<link
+		href="css/photoConf.css" rel="stylesheet" type="text/css"/>
+
+		{# title #}
+		<title>PhotoStudio -審査画像確認-</title>
 	</head>
 
 	<body>
-		<div class="header">
-			<h3>
-				PhotoStudio
-			</h3>
-			<div id="login-form">
-				<input type="button" name="logout" value="ログアウト" onclick="location.href='{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}logout.php'">
-			</div>
-		</div>
+		{% include 'common/header.html.twig' %}
+
 
 		<form method="post" action="photoConf.php">
 			<div id="photo-conf-body">
 				<div id="img-div">
 					<div id="upload-img-div">
 						<h2>投稿画像</h2>
-						<img id="upload-img" src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}public/upload/{{dataArr.photo_url}}">
+						<img id="upload-img" src="public/upload/{{dataArr.photo_url}}">
 					</div>
 					<div id="sample-img-div">
 						<h2>投稿画像（サンプル）</h2>
-						<img id="sample-img" src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}public/sample/{{dataArr.sample_url}}">
+						<img id="sample-img" src="public/sample/{{dataArr.sample_url}}">
 					</div>
 				</div>
 
@@ -39,8 +53,8 @@
 					</div>
 					<div id="client-name-div">
 						<div>登録者名</div>
-						<div id="img-client" class="info-str">
-							{{dataArr.client_name}}
+						<div id="img-username" class="info-str">
+							{{dataArr.username}}
 						</div>
 					</div>
 					<div id="category-div">
@@ -86,6 +100,10 @@
 				</div>
 			</div>
 		</form>
+
 		<script src="js/addCommas.js"></script>
+
+		{# Bootstrap #}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 	</body>
 </html>

@@ -3,15 +3,23 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+		{# favicon #}
+		<link rel="icon" href="/public/favicon-black.ico"/>
+
+		{# javascript #}
+		<script src="js/changeFavicon.js"></script>
+
+		{# css #}
 		<link href="css/common.css" rel="stylesheet" type="text/css"/>
 		<link href="css/list.css" rel="stylesheet" type="text/css"/>
-		<title>PhotoStudio</title>
+		<title>PhotoStudio -admin-</title>
 	</head>
 
 	<body>
 		<div class="header">
 			<h1 class="logo">
-				<a href="{{constant('photostudio\\Bootstrap::APP_URL')}}home.php">
+				<a href="home.php">
 					PhotoStudio
 				</a>
 			</h1>
@@ -21,13 +29,13 @@
 			<div id="category-list">
 				<ul>
 					<li class="category">
-						<a href="{{constant('photostudio\\Bootstrap::APP_URL')}}admin.php">
+						<a href="admin.php">
 							全て
 						</a>
 					</li>
 					{% for value in ctgArr %}
 						<li class="category">
-							<a href="{{constant('photostudio\\Bootstrap::APP_URL')}}admin.php?ctg_id={{value.category_id}}">
+							<a href="dmin.php?ctg_id={{value.category_id}}">
 								{{value.category}}
 							</a>
 						</li>
@@ -43,8 +51,8 @@
 
 					{% for value in photoArr %}
 						<div class="photo">
-							<a href="{{constant('photostudio\\Bootstrap::APP_URL')}}adminDetail.php?photo_id={{value.photo_id}}">
-								<img src="{{constant('photostudio\\Bootstrap::APP_URL')}}sample/{{value.sample_url}}" alt="{{value.photo_title}}">
+							<a href="adminDetail.php?photo_id={{value.photo_id}}">
+								<img src="sample/{{value.sample_url}}" alt="{{value.photo_title}}">
 								<div class="photo-title">
 									<p>
 										{{value.photo_title}}

@@ -86,6 +86,7 @@ $sexArr = $common->getSex();
 
 $context = [];
 
+$context['user'] = 'customer';
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;
 $context['sexArr'] = $sexArr;

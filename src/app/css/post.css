@@ -1,3 +1,7 @@
+#post-body{
+  margin-top: 100px;
+}
+
 #drop-area {
   border: 2px dashed rgb(113, 125, 194);
   border-radius: 2em;

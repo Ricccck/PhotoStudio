@@ -1,10 +1,10 @@
 <?php
-namespace photostudio;
+namespace Photostudio;
 
 require_once  __DIR__ . '/../lib/Bootstrap.class.php';
 
 use Photostudio\lib\Bootstrap;
-use photostudio\lib\PDODatabase;
+use Photostudio\lib\PDODatabase;
 use Photostudio\lib\Admin;
 use Photostudio\lib\Photo;
 
@@ -30,5 +30,5 @@ $photoArr = $admin->getPhotoList($ctg_id);
 $context = [];
 $context['ctgArr'] = $ctgArr;
 $context['photoArr'] = $photoArr;
-$template = $twig->load('admin.html.twig');
+$template = $twig->load('admin/admin.html.twig');
 $template->display($context);

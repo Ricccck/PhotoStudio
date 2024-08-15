@@ -2,10 +2,29 @@
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<meta charset="utf-8"/>
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+		{# Bootstrap #}
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+		{# favicon #}
+		<link
+		rel="icon" href="/public/favicon-black.ico"/>
+
+		{# javascript #}
+		<script src="js/changeFavicon.js"></script>
+		<script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+
+		{# css #}
 		<link href="css/common.css" rel="stylesheet" type="text/css"/>
-		<link href="css/cart.css" rel="stylesheet" type="text/css"/>
-		<title>購入カート</title>
+		<link
+		href="css/cart.css" rel="stylesheet" type="text/css"/>
+
+		{# title #}
+		<title>PhotoStudio -購入カート-</title>
 	</head>
 
 	<body>
@@ -18,7 +37,6 @@
 
 			<form method="post" id="cart-body">
 				<div id="cart-list">
-
 					<ul>
 						{% for value in crtArr %}
 							<li class="item">
@@ -26,8 +44,8 @@
 									<input type="checkbox" name="crt_ids[]" value="{{value.crt_id}}">
 								</div>
 								<div class="item-img">
-									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}detail.php?photo_id={{value.photo_id}}">
-										<img src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}sample/{{value.sample_url}}" alt="{{value.photo_title}}">
+									<a href="detail.php?photo_id={{value.photo_id}}">
+										<img src="public/sample/{{value.sample_url}}" alt="{{value.photo_title}}">
 									</a>
 								</div>
 								<div class="item-title">
@@ -43,7 +61,7 @@
 									</div>
 								</div>
 								<div class="delete-btn-div">
-									<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}cart.php?crt_id={{value.crt_id}}">
+									<a href="cart.php?crt_id={{value.crt_id}}">
 										<input type="button" value="削除">
 									</a>
 								</div>
@@ -64,7 +82,10 @@
 		</div>
 
 		{% include 'common/footer.html.twig' %}
-		
-		<script src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}js/addCommas.js"></script>
+
+		<script src="js/addCommas.js"></script>
+
+		{# Bootstrap #}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"/>
 	</body>
 </html>

@@ -13,11 +13,12 @@
 			<ul class="navbar-nav ms-auto">
 				{% if user is same as 'customer' %}
 					<li class="nav-item">
-						<a class="nav-link active" href="cusRegist.php">購入登録</a>
+						<a class="nav-link active" href="cliRegist.php">販売登録</a>
+
 					</li>
 				{% elseif user is same as 'client' %}
 					<li class="nav-item">
-						<a class="nav-link active" href="cliRegist.php">販売登録</a>
+						<a class="nav-link active" href="cusRegist.php">購入登録</a>
 					</li>
 				{% else %}
 					<li class="nav-item">

@@ -1,9 +1,10 @@
 #contents {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  margin-top: 120px;
+  height: calc(100vh - 120px);
+}
+
+.title {
+  text-align: center;
 }
 
 #cart-body{

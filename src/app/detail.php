@@ -25,20 +25,18 @@ $photo_id = (isset($_GET['photo_id']) === true && preg_match('/^[0-9]+$/', $_GET
 
 $photoArr = $photo->getPhotoDetailData($photo_id);
 
-$photoArr['upload_date'] = date('Y年m月d日', strtotime($photoArr['upload_date']));
+$photoArr['upload_date'] = date('Y年m月d日', strtotime($photoArr['upload_at']));
 
 
 $userArr = [];
 $is_customer = false;
 if (isset($_SESSION['client'])) {
   $userArr = $client->getData($_SESSION['client']);
-  $userArr['user_name'] = $userArr['client_name'];
 } elseif (isset($_SESSION['customer'])) {
   $userArr = $customer->getData($_SESSION['customer']);
-  $userArr['user_name'] = $userArr['family_name'] . $userArr['first_name'];
   $is_customer = true;
 } else {
-  $userArr['user_name'] = 'Guest';
+  $userArr['username'] = 'Guest';
 }
 
 
@@ -47,5 +45,5 @@ $context = [];
 $context['photoArr'] = $photoArr;
 $context['isCustomer'] = $is_customer;
 $context['userArr'] = $userArr;
-$template = $twig->load('detail.html.twig');
+$template = $twig->load('common/detail.html.twig');
 $template->display($context);
