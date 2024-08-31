@@ -30,172 +30,188 @@
 		{% include 'common/sub_header.html.twig' %}
 
 
-		<div class="regist-body">
+		<div class="contents">
 			<div class="card">
-				<form method="post" action="cliConfirm.php">
-					<h1 class="title">販売者登録</h1>
-
-					<div class="input-div">
-						<label for="username">
-							ユーザーネーム<span class="red">*</span>
-						</label>
-						<input type="text" name="username" placeholder="userName123" value="{{dataArr.username}}">
-						{% if errArr.username | length > 0 %}
-							<div class="red">{{errArr.username}}</div>
-						{% endif %}
-					</div>
-
-					<div class="input-div">
-						<label for="name">
-							お名前（氏名）<span class="red">*</span>
-						</label>
-						<div class="flex">
-							<input type="text" name="last_name" placeholder="佐藤" value="{{dataArr.last_name}}">
-							<input type="text" name="first_name" placeholder="太郎" value="{{dataArr.first_name}}">
+				<div class="card-header text-center">
+					<h1>販売者登録</h1>
+				</div>
+				<div class="mt-3 card-body">
+					<form method="post" action="cliConfirm.php">
+						<div class="mb-3">
+							<label for="username" class="form-label">
+								ユーザーネーム<span class="red">*</span>
+							</label>
+							<input type="text" id="username" name="username" class="form-control" size="30" placeholder="userName123" value="{{dataArr.username}}"/>
+							{% if errArr.username | length > 0 %}
+								<div class="red">{{errArr.username}}</div>
+							{% endif %}
 						</div>
-						{% if errArr.last_name | length > 0 %}
-							<div class="red">{{errArr.last_name}}</div>
-						{% endif %}
-						{% if errArr.first_name | length > 0 %}
-							<div class="red">{{errArr.last_name}}</div>
-						{% endif %}
-					</div>
 
-					<div class="input-div">
-						<label for="name_kana">
-							お名前（かな）<span class="red">*</span>
-						</label>
-						<div class="flex">
-							<input type="text" name="last_name_kana" placeholder="さとう" value="{{dataArr.last_name_kana}}">
-							<input type="text" name="first_name_kana" placeholder="たろう" value="{{dataArr.first_name_kana}}">
+						<div class="mb-3">
+							<label for="name" class="form-label">
+								氏名<span class="red">*</span>
+							</label>
+							<div id="name" class="d-flex p-2">
+								<label for="last_name">
+									（姓）
+								</label>
+								<input type="text" id="last_name" name="last_name" class="form-control" size="15" placeholder="佐藤" value="{{dataArr.last_name}}"/>
+								<label for="first_name">
+									（名）
+								</label>
+								<input type="text" id="first_name" name="first_name" class="form-control" size="15" placeholder="太郎" value="{{dataArr.first_name}}"/>
+							</div>
+							{% if errArr.last_name | length > 0 %}
+								<div class="red">{{errArr.last_name}}</div>
+							{% endif %}
+							{% if errArr.first_name | length > 0 %}
+								<div class="red">{{errArr.last_name}}</div>
+							{% endif %}
 						</div>
-						{% if errArr.last_name_kana | length > 0 %}
-							<div class="red">{{errArr.last_name_kana}}</div>
-						{% endif %}
-						{% if errArr.first_name_kana | length > 0 %}
-							<div class="red">{{errArr.first_name_kana}}</div>
-						{% endif %}
-					</div>
 
-					<div class="input-div">
-						<label for="company_name">
-							会社名
-						</label>
-						<input type="text" name="company_name" placeholder="xxxx株式会社" value="{{dataArr.company_name}}">
-						{% if errArr.website | length > 0 %}
-							<div class="red">{{errArr.company_name}}</div>
-						{% endif %}
-					</div>
-
-					<div class="input-div">
-						<label for="email">
-							メールアドレス<span class="red">*</span>
-						</label>
-						<input type="text" name="email" placeholder="xxxx@example.com" value="{{dataArr.email}}" size="40">
-						{% if errArr.email | length > 0 %}
-							<div class="red">{{errArr.email}}</div>
-						{% endif %}
-					</div>
-
-					<div class="input-div">
-						<label for="phone_number">
-							電話番号<span class="red">*</span>
-						</label>
-						<div class="flex">
-							<input type="text" name="tel1" placeholder="090" value="{{dataArr.tel1}}" size="6" maxlength="6">
-							<input type="text" name="tel2" placeholder="xxxx" value="{{dataArr.tel2}}" size="6" maxlength="6">
-							<input type="text" name="tel3" placeholder="xxxx" value="{{dataArr.tel3}}" size="6" maxlength="6">
+						<div class="mb-3">
+							<label for="name_kana" class="form-label">
+								氏名（かな）<span class="red">*</span>
+							</label>
+							<div id="name_kana" class="d-flex p-2">
+								<label for="last_name_kana">
+									（姓）
+								</label>
+								<input type="text" id="last_name_kana" name="last_name_kana" class="form-control" size="15" placeholder="さとう" value="{{dataArr.last_name_kana}}"/>
+								<label for="first_name_kana">
+									（名）
+								</label>
+								<input type="text" id="first_name_kana" name="first_name_kana" class="form-control" size="15" placeholder="たろう" value="{{dataArr.first_name_kana}}"/>
+							</div>
+							{% if errArr.last_name_kana | length > 0 %}
+								<div class="red">{{errArr.last_name_kana}}</div>
+							{% endif %}
+							{% if errArr.first_name_kana | length > 0 %}
+								<div class="red">{{errArr.first_name_kana}}</div>
+							{% endif %}
 						</div>
-						{% if errArr.tel1 | length > 0 %}
-							<div class="red">{{errArr.tel1}}</div>
-						{% endif %}
-						{% if errArr.tel2 | length > 0 %}
-							<div class="red">{{errArr.tel2}}</div>
-						{% endif %}
-						{% if errArr.tel3 | length > 0 %}
-							<div class="red">{{errArr.tel3}}</div>
-						{% endif %}
-					</div>
 
-					<div class="input-div">
-						<label for="sex">
-							性別<span class="red">*</span>
-						</label>
-						<select name="sex">
-							{% for key, value in sexArr %}
-								<option value={{key}}>{{value}}</option>
-							{% endfor %}
-						</select>
-						{% if errArr.sex | length > 0 %}
-							<div class="red">{{errArr.sex}}</div>
-						{% endif %}
-					</div>
+						<div class="mb-3">
+							<label for="company_name" class="form-label">
+								会社名
+							</label>
+							<input type="text" id="company_name" name="company_name" class="form-control" size="30" placeholder="xxxx株式会社" value="{{dataArr.company_name}}"/>
+							{% if errArr.website | length > 0 %}
+								<div class="red">{{errArr.company_name}}</div>
+							{% endif %}
+						</div>
 
-					<div class="input-div h-adr">
-						<input type="hidden" class="p-country-name" value="Japan">
-						<label for="zip">
-							郵便番号<span class="red">*</span>
-						</label>
-						<input class="p-postal-code" type="text" size="8" maxlength="8" name="zip" placeholder="〒000-0000" value="{{dataArr.zip}}">
-						{% if errArr.zip | length > 0 %}
-							<div class="red">{{errArr.zip}}</div>
-						{% endif %}
+						<div class="mb-3">
+							<label for="email" class="form-label">
+								メールアドレス<span class="red">*</span>
+							</label>
+							<input type="email" id="email" name="email" class="form-control" size="30" placeholder="xxxx@example.com" value="{{dataArr.email}}"/>
+							{% if errArr.email | length > 0 %}
+								<div class="red">{{errArr.email}}</div>
+							{% endif %}
+						</div>
 
-						<label for="pref">
-							住所（都道府県）<span class="red">*</span>
-						</label>
-						<input type="text" class="p-region" name="pref" value="{{dataArr.pref}}" size="40">
-						{% if errArr.pref | length > 0 %}
-							<div class="red">{{errArr.pref}}</div>
-						{% endif %}
+						<div class="mb-3">
+							<label for="phone_number" class="form-label">
+								電話番号<span class="red">*</span>
+							</label>
+							<div class="d-flex m-2">
+								<input type="text" name="tel1" class="form-control" placeholder="090" value="{{dataArr.tel1}}" size="6" maxlength="6"/>
+								<input type="text" name="tel2" class="form-control" placeholder="xxxx" value="{{dataArr.tel2}}" size="6" maxlength="6"/>
+								<input type="text" name="tel3" class="form-control" placeholder="xxxx" value="{{dataArr.tel3}}" size="6" maxlength="6"/>
+							</div>
+							{% if errArr.tel1 | length > 0 %}
+								<div class="red">{{errArr.tel1}}</div>
+							{% endif %}
+							{% if errArr.tel2 | length > 0 %}
+								<div class="red">{{errArr.tel2}}</div>
+							{% endif %}
+							{% if errArr.tel3 | length > 0 %}
+								<div class="red">{{errArr.tel3}}</div>
+							{% endif %}
+						</div>
 
-						<label for="city">
-							住所（市区町村）<span class="red">*</span>
-						</label>
-						<input type="text" class="p-locality p-street-address" name="city" value="{{dataArr.city}}" size="40">
-						{% if errArr.city | length > 0 %}
-							<div class="red">{{errArr.city}}</div>
-						{% endif %}
+						<div class="mb-3">
+							<label for="sex" class="form-label">
+								性別<span class="red">*</span>
+							</label>
+							<select id="sex" name="sex" class="form-select">
+								{% for key, value in sexArr %}
+									<option value={{key}}>{{value}}</option>
+								{% endfor %}
+							</select>
+							{% if errArr.sex | length > 0 %}
+								<div class="red">{{errArr.sex}}</div>
+							{% endif %}
+						</div>
 
-						<label for="town">
-							住所（番地以降）<span class="red">*</span>
-						</label>
-						<input type="text" class="p-extended-address" name="town" value="{{dataArr.town}}" size="40">
-						{% if errArr.town | length > 0 %}
-							<div class="red">{{errArr.town}}</div>
-						{% endif %}
-					</div>
+						<div class="mb-3 h-adr">
+							<input type="hidden" class="p-country-name" value="Japan">
+							<label for="zip" class="form-label">
+								郵便番号<span class="red">*</span>
+							</label>
+							<input type="text" id="zip" name="zip" class="form-control p-postal-code" size="8" maxlength="8" placeholder="〒000-0000" value="{{dataArr.zip}}"/>
+							{% if errArr.zip | length > 0 %}
+								<div class="red">{{errArr.zip}}</div>
+							{% endif %}
 
-					<div class="input-div">
-						<label for="website">
-							ホームページ
-						</label>
-						<input type="text" name="website" value="{{dataArr.website}}">
-						{% if errArr.website | length > 0 %}
-							<div class="red">{{errArr.website}}</div>
-						{% endif %}
-					</div>
+							<label for="pref" class="mt-1 form-label">
+								住所（都道府県）<span class="red">*</span>
+							</label>
+							<input type="text" id="pref" name="pref" class="form-control p-region" size="30" value="{{dataArr.pref}}"/>
+							{% if errArr.pref | length > 0 %}
+								<div class="red">{{errArr.pref}}</div>
+							{% endif %}
 
-					<div class="input-div">
-						<label for="password">
-							パスワード<span class="red">*</span>
-						</label>
-						<input type="password" name="password" placeholder="大文字小文字数字を含む8~20桁の半角英数字で入力してください。" value="{{dataArr.password}}" id="password" size="40">
-						{% if errArr.password | length > 0 %}
-							<div class="red">{{errArr.password}}</div>
-						{% endif %}
+							<label for="city" class="mt-1 form-label">
+								住所（市区町村）<span class="red">*</span>
+							</label>
+							<input type="text" id="city" name="city" class="form-control p-locality p-street-address" size="30" value="{{dataArr.city}}"/>
+							{% if errArr.city | length > 0 %}
+								<div class="red">{{errArr.city}}</div>
+							{% endif %}
 
-						<label for="pass_conf">
-							パスワード(確認)<span class="red">*</span>
-						</label>
-						<input type="password" name="pass_conf" value="" id="pass_conf" size="40">
-						{% if errArr.pass_conf | length > 0 %}
-							<div class="red">{{errArr.pass_conf}}</div>
-						{% endif %}
-					</div>
+							<label for="town" class="mt-1 form-label">
+								住所（番地以降）<span class="red">*</span>
+							</label>
+							<input type="text" id="town" name="town" class="form-control p-extended-address" size="30" value="{{dataArr.town}}"/>
+							{% if errArr.town | length > 0 %}
+								<div class="red">{{errArr.town}}</div>
+							{% endif %}
+						</div>
 
-					<input id="submit-btn" type="submit" name="confirm" value="登録確認">
-				</form>
+						<div class="mb-3">
+							<label for="website" class="form-label">
+								ホームページ
+							</label>
+							<input type="text" id="website" name="website" class="form-control" size="30" value="{{dataArr.website}}"/>
+							{% if errArr.website | length > 0 %}
+								<div class="red">{{errArr.website}}</div>
+							{% endif %}
+						</div>
+
+						<div class="mb-5">
+							<label for="password" class="form-label">
+								パスワード<span class="red">*</span>
+							</label>
+							<input type="password" id="password" name="password" class="form-control" size="30" placeholder="大文字小文字数字を含む8~20桁の半角英数字" value="{{dataArr.password}}"/>
+							{% if errArr.password | length > 0 %}
+								<div class="red">{{errArr.password}}</div>
+							{% endif %}
+
+							<label for="pass_conf" class="mt-1 form-label">
+								パスワード(確認)<span class="red">*</span>
+							</label>
+							<input type="password" id="pass_conf" name="pass_conf" class="form-control" size="30" value=""/>
+							{% if errArr.pass_conf | length > 0 %}
+								<div class="red">{{errArr.pass_conf}}</div>
+							{% endif %}
+						</div>
+						<div class="d-grid mt-4 mb-4">
+							<input type="submit" name="confirm" class="btn btn-primary btn-lg" value="登録確認" size="30"/>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 

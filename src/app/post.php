@@ -28,11 +28,12 @@ if($_SESSION['client'] === null) {
 $ctgArr = $photo->getCategoryList();
 
 
-$dataArr = $client->getData($_SESSION['client']);
+$userArr = $client->getData($_SESSION['client']);
+var_dump($dataArr);
 
 
 $context = [];
 $context['ctgArr'] = $ctgArr;
-$context['dataArr'] = $dataArr;
+$context['userArr'] = $userArr;
 $template = $twig->load('client/post.html.twig');
 $template->display($context);

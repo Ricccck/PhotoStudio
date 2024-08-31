@@ -10,7 +10,7 @@ use Photostudio\lib\Client;
 use Photostudio\lib\Customer;
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE);
-$errCheck = new ErrCheck();
+$errCheck = new ErrCheck($db);
 $client = new Client($db);
 $customer = new Customer($db);
 
@@ -21,14 +21,10 @@ $twig = new \Twig\Environment($loader, [
 ]);
 
 
-$ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
-
-$isCustomer = (isset($_POST['customer']) && $_POST['customer'] === 'on') ? true : false;
-$isClient = (isset($_POST['client']) && $_POST['client'] === 'on') ? true : false;
-
 $dataArr = [
   'email' => '',
-  'password' => ''
+  'password' => '',
+  'user' => ''
 ];
 
 $errArr = [];
@@ -36,25 +32,27 @@ foreach ($dataArr as $key => $value) {
   $errArr[$key] = '';
 }
 
-if ($isCustomer) {
-  $isLoggedIn = $customer->login($_POST['email'], $_POST['password']);
-  if ($isLoggedIn) {
-    header("Location: " . Bootstrap::APP_URL . "home.php");
-  } else {
-    $errArr['login'] = 'ログインに失敗しました';
+if (isset($_POST['login'])) {
+  $dataArr = $_POST;
+  $dataArr['user'] = isset($dataArr['user']) ? $dataArr['user'] : '';
+  $errArr = $errCheck->loginCheck($dataArr);
+  $err_check = $errCheck->getErrorFlg();
+  $isLoggedIn = false;
+
+  if($err_check && $dataArr['user'] === "customer"){
+    $isLoggedIn = $customer->login($dataArr['email'], $dataArr['password']);
+  } elseif ($err_check && $dataArr['user'] === "client"){
+    $isLoggedIn = $client->login($dataArr['email'], $dataArr['password']);
   }
-} elseif ($isClient) {
-  $isLoggedIn = $client->login($_POST['email'], $_POST['password']);
-  if ($isLoggedIn) {
+
+  if ($isLoggedIn === true) {
     header("Location: " . Bootstrap::APP_URL . "home.php");
   } else {
-    $errArr['login'] = 'ログインに失敗しました';
+    $errArr['login'] = $isLoggedIn;
   }
 }
 
 
-
 $context['errArr'] = $errArr;
-$context['user'] = 'guest';
 $template = $twig->load('authentication/login.html.twig');
 $template->display($context);
