@@ -82,28 +82,33 @@ class Customer
 
   public function login($user, $pass)
   {
+    
     $table = ' customer_pass cp JOIN customers c ON cp.customer_id = c.customer_id';
     $column = ' password_hash, c.customer_id ';
     $where = ' username = ? OR email = ? ';
     $arrVal = [$user, $user];
 
     $res = $this->db->select($table, $column, $where, $arrVal);
-    [$hashArr] = $res !== false ? $res : ['password_hash' => ''];
 
-    if (password_verify($pass, $hashArr['password_hash'])) {
-      $sessionId = $this->generateUniqueSessionId();
+    if ($res !== []) {
+      $result = password_verify($pass, $res[0]['password_hash']);
+      if($result){
+        $sessionId = $this->generateUniqueSessionId();
 
-      $this->db->insert('sessions', [
-        'session_id' => $sessionId,
-        'user_id' => $hashArr['customer_id'],
-        'user_type' => 'customer'
-      ]);
-
-      $_SESSION['customer'] = $sessionId;
-
-      return true;
+        $this->db->insert('sessions', [
+          'session_id' => $sessionId,
+          'user_id' => $res[0]['customer_id'],
+          'user_type' => 'customer'
+        ]);
+  
+        $_SESSION['customer'] = $sessionId;
+  
+        return true;
+      } else {
+        return '正しいメールアドレスとパスワードを入力してください。';
+      }
     } else {
-      return false;
+      return '正しいメールアドレスとパスワードを入力してください。';
     }
   }
 

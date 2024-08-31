@@ -3,8 +3,13 @@ body {
   background: linear-gradient(white, whitesmoke, rgb(57, 103, 176));
 }
 
+.navbar {
+  height: 60px;
+}
+
 .contents {
-  margin-top: 100px;
+  padding-top: 60px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

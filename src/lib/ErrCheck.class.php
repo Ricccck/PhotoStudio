@@ -56,6 +56,18 @@ class ErrCheck
     return $this->errArr;
   }
 
+  public function loginCheck($dataArr)
+  {
+    $this->dataArr = $dataArr;
+    $this->createErrorMessage();
+    $this->isExistedEmailOrUsername();
+    $this->emailOrUserNameCheck();
+    $this->passCheck();
+    $this->userCheck();
+
+    return $this->errArr;
+  }
+
   public function photoErrCheck($dataArr)
   {
     $this->dataArr = $dataArr;
@@ -151,6 +163,25 @@ class ErrCheck
     }
   }
 
+  private function emailOrUsernameCheck()
+  {
+    if ($this->dataArr['email'] === ''){
+      $this->errArr['email'] = 'メールアドレスまたはユーザーネームを入力してください。';
+    }
+  }
+
+  private function isExistedEmailOrUsername()
+  {
+    $count = $this->db->count('customers', 'email = ?', [$this->dataArr['email']]);
+    $count += $this->db->count('clients', 'email = ?', [$this->dataArr['email']]);
+    $count += $this->db->count('customers', 'username = ?', [$this->dataArr['email']]);
+    $count += $this->db->count('clients', 'username = ?', [$this->dataArr['email']]);
+
+    if($count === 0){
+      $this->errArr['email'] = '登録されていないメールアドレスorユーザーネームです。';
+    }
+  }
+
   private function telCheck()
   {
     if (
@@ -209,10 +240,10 @@ class ErrCheck
     }
   }
 
-  private function whichCheck()
+  private function userCheck()
   {
-    if (isset($_POST['customer']) !== true || isset($_POST['client']) !== true) {
-      $this->errArr['check'] = 'どちらかを選択してください';
+    if($this->dataArr['user'] === ''){
+      $this->errArr['user'] = '選択してください。';
     }
   }
 

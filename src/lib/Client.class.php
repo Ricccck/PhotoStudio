@@ -90,22 +90,26 @@ class Client
     $arrVal = [$user, $user];
 
     $res = $this->db->select($table, $column, $where, $arrVal);
-    [$hashArr] = $res !== false ? $res : ['password_hash' => ''];
 
-    if (password_verify($pass, $hashArr['password_hash'])) {
-      $sessionId = $this->generateUniqueSessionId();
+    if ($res !== []) {
+      $result = password_verify($pass, $res[0]['password_hash']);
+      if($result){
+        $sessionId = $this->generateUniqueSessionId();
 
-      $this->db->insert('sessions', [
-        'session_id' => $sessionId,
-        'user_id' => $hashArr['client_id'],
-        'user_type' => 'client'
-      ]);
-
-      $_SESSION['client'] = $sessionId;
-
-      return true;
+        $this->db->insert('sessions', [
+          'session_id' => $sessionId,
+          'user_id' => $res[0]['client_id'],
+          'user_type' => 'client'
+        ]);
+  
+        $_SESSION['client'] = $sessionId;
+  
+        return true;
+      } else {
+        return '正しいメールアドレスとパスワードを入力してください。';
+      }
     } else {
-      return false;
+      return '正しいメールアドレスとパスワードを入力してください。';
     }
   }
 
