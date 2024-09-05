@@ -12,28 +12,6 @@ class ErrCheck
     $this->db = $db;
   }
 
-  public function customerErrCheck($dataArr)
-  {
-    $this->dataArr = $dataArr;
-    $this->createErrorMessage();
-    $this->userNameCheck();
-    $this->isExistedUsername();
-    $this->lastNameCheck();
-    $this->firstNameCheck();
-    $this->lastNameKanaCheck();
-    $this->firstNameKanaCheck();
-    $this->emailCheck();
-    $this->isExistedCusEmail();
-    $this->telCheck();
-    $this->sexCheck();
-    $this->zipCheck();
-    $this->addCheck();
-    $this->passCheck();
-    $this->passConfCheck();
-
-    return $this->errArr;
-  }
-
   public function clientErrCheck($dataArr)
   {
     $this->dataArr = $dataArr;
@@ -46,6 +24,28 @@ class ErrCheck
     $this->firstNameKanaCheck();
     $this->emailCheck();
     $this->isExistedCliEmail();
+    $this->telCheck();
+    $this->sexCheck();
+    $this->zipCheck();
+    $this->addCheck();
+    $this->passCheck();
+    $this->passConfCheck();
+
+    return $this->errArr;
+  }
+
+  public function customerErrCheck($dataArr)
+  {
+    $this->dataArr = $dataArr;
+    $this->createErrorMessage();
+    $this->userNameCheck();
+    $this->isExistedUsername();
+    $this->lastNameCheck();
+    $this->firstNameCheck();
+    $this->lastNameKanaCheck();
+    $this->firstNameKanaCheck();
+    $this->emailCheck();
+    $this->isExistedCusEmail();
     $this->telCheck();
     $this->sexCheck();
     $this->zipCheck();

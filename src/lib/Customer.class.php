@@ -112,6 +112,30 @@ class Customer
     }
   }
 
+  public function edit($dataArr, $customer_id){
+    $this->db->dbh->beginTransaction();
+
+    try{
+      $table = ' customers ';
+      $insData = $dataArr;
+      $where = ' customer_id = ? ';
+      $arrWhereVal = [$customer_id];
+
+      echo '<br>';
+      var_dump($dataArr);
+
+      $this->db->update($table, $where, $insData, $arrWhereVal);
+
+      $this->db->dbh->commit();
+
+      return true;
+    } catch (\Exception $e){
+      $this->db->dbh->rollBack();
+
+      return false;
+    }
+  }
+
   public function logout($sessionId)
   {
     $this->db->dbh->beginTransaction();

@@ -1,0 +1,100 @@
+<div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form method="post" action="mypage.php">
+
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="editProfileLabel">プロフィール編集</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{% if userArr.client_id is not empty %}
+						<input type="hidden" id="client_id" name="client_id" value="{{userArr.client_id}}"/>
+					{% endif %}
+					{% if userArr.customer_id is not empty %}
+						<input type="hidden" id="customer_id" name="customer_id" value="{{userArr.customer_id}}"/>
+					{% endif %}
+
+					<!-- 氏名 -->
+					<div class="mb-3">
+						<label for="name" class="form-label">氏名</label>
+						<div id="name" class="d-flex p-2">
+							<label for="last_name">（姓）</label>
+							<input type="text" id="last_name" name="last_name" class="form-control" size="15" placeholder="佐藤" value="{{dataArr.last_name}}"/>
+							<label for="first_name">（名）</label>
+							<input type="text" id="first_name" name="first_name" class="form-control" size="15" placeholder="太郎" value="{{dataArr.first_name}}"/>
+						</div>
+					</div>
+
+					<!-- 氏名（かな） -->
+					<div class="mb-3">
+						<label for="name_kana" class="form-label">氏名（かな）</label>
+						<div id="name_kana" class="d-flex p-2">
+							<label for="last_name_kana">（姓）</label>
+							<input type="text" id="last_name_kana" name="last_name_kana" class="form-control" size="15" placeholder="さとう" value="{{dataArr.last_name_kana}}"/>
+							<label for="first_name_kana">（名）</label>
+							<input type="text" id="first_name_kana" name="first_name_kana" class="form-control" size="15" placeholder="たろう" value="{{dataArr.first_name_kana}}"/>
+						</div>
+					</div>
+
+					<!-- 会社名 -->
+					{% if userArr.client_id is not empty %}
+						<div class="mb-3">
+							<label for="company_name" class="form-label">会社名</label>
+							<input type="text" id="company_name" name="company_name" class="form-control" size="30" placeholder="xxxx株式会社" value="{{dataArr.company_name}}"/>
+						</div>
+					{% endif %}
+
+					<!-- 電話番号 -->
+					<div class="mb-3">
+						<label for="phone_number" class="form-label">電話番号</label>
+						<div class="d-flex m-2">
+							<input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="09012345678" value="{{dataArr.phone_number}}" size="12" maxlength="12"/>
+						</div>
+					</div>
+
+					<!-- 性別 -->
+					<div class="mb-3">
+						<label for="sex" class="form-label">性別</label>
+						<select id="sex" name="sex" class="form-select">
+							{% for key, value in sexArr %}
+								<option value={{key}}>{{value}}</option>
+							{% endfor %}
+						</select>
+					</div>
+
+					<!-- 住所 -->
+					<div class="mb-3 h-adr">
+						<input type="hidden" class="p-country-name" value="Japan">
+						<label for="zip" class="form-label">郵便番号</label>
+						<input type="text" id="zip" name="zip" class="form-control p-postal-code" size="8" maxlength="8" placeholder="123-4567 or 1234567" value="{{dataArr.zip}}"/>
+
+						<label for="pref" name="pref" class="mt-1 form-label">住所（都道府県）</label>
+						<input type="text" id="pref" class="form-control p-region" size="30" value="{{dataArr.pref}}"/>
+
+						<label for="city" class="mt-1 form-label">住所（市区町村）</label>
+						<input type="text" id="city" name="city" class="form-control p-locality p-street-address" size="30" value="{{dataArr.city}}"/>
+
+						<label for="town" class="mt-1 form-label">住所（番地以降）</label>
+						<input type="text" id="town" name="town" class="form-control p-extended-address" size="30" value="{{dataArr.town}}"/>
+
+					</div>
+
+					<!-- ホームページ -->
+					{% if userArr.client_id is not empty %}
+						<div class="mb-3">
+							<label for="website" name="website" class="form-label">ホームページ</label>
+							<input type="text" id="website" class="form-control" size="30" value="{{dataArr.website}}"/>
+						</div>
+					{% endif %}
+				</div>
+
+				<!-- モーダルフッター -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+					<button type="submit" name="send" class="btn btn-primary">変更する</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

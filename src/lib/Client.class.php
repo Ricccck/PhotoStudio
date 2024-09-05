@@ -113,6 +113,27 @@ class Client
     }
   }
 
+  public function edit($dataArr, $client_id){
+    $this->db->dbh->beginTransaction();
+
+    try{
+      $table = ' clients ';
+      $insData = $dataArr;
+      $where = ' client_id = ? ';
+      $arrWhereVal = [$client_id];
+
+      $this->db->update($table, $where, $insData, $arrWhereVal);
+
+      $this->db->dbh->commit();
+
+      return true;
+    } catch (\Exception $e){
+      $this->db->dbh->rollBack();
+
+      return false;
+    }
+  }
+
   public function logout($sessionId)
   {
     $this->db->dbh->beginTransaction();
