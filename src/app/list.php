@@ -25,10 +25,11 @@ $twig = new \Twig\Environment($loader, [
 $ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
 $ctgArr = $photo->getCategoryList();
 
-$dataArr = [];
-$dataArr['ctg_id'] = $ctg_id;
+$dataArr['ctg_name'] = '全て';
 foreach ($ctgArr as $ctg) {
-  $dataArr['ctg_name'] = $ctg['category_id'] === $ctg_id ? $ctg['category'] : '全て';
+  if($ctg['category_id'] == $ctg_id){
+    $dataArr['ctg_name'] = $ctg['category'];
+  }
 }
 
 $userArr = [];

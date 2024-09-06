@@ -30,10 +30,13 @@
 	<body>
 		{% include 'common/header.html.twig' %}
 
-		<div id="contents">
+		<div class="contents">
 			<h1 class="title">
 				購入カート
 			</h1>
+			{% if errArr.added | length > 0 %}
+				<div class="red">{{errArr.added}}</div>
+			{% endif %}
 
 			<form method="post" id="cart-body">
 				<div id="cart-list">
@@ -47,6 +50,12 @@
 									<a href="detail.php?photo_id={{value.photo_id}}">
 										<img src="public/sample/{{value.sample_url}}" alt="{{value.photo_title}}">
 									</a>
+								</div>
+								<div class="item-id">
+									<div>ID</div>
+									<div>
+										{{value.photo_id}}
+									</div>
 								</div>
 								<div class="item-title">
 									<div>タイトル</div>

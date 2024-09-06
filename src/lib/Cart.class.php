@@ -13,7 +13,7 @@ class Cart
   public function getCartList($customerId)
   {
     $table = ' cart c JOIN upload_photos up ON c.photo_id = up.photo_id LEFT JOIN price p ON up.price = p.price_id ';
-    $col = ' crt_id, photo_title, sample_url, p.price ';
+    $col = ' crt_id, up.photo_id, photo_title, sample_url, p.price ';
     $where = ($customerId !== '') ? ' c.customer_id = ? AND is_purchased = ? AND c.is_deleted = ? ' : '';
 
     $arrVal = ($customerId !== '') ? [$customerId, 0, 0] : [];
@@ -49,11 +49,21 @@ class Cart
   public function insCartData($customerId, $photoId)
   {
     $table = ' cart ';
+    $where = ' customer_id = ? AND photo_id = ? AND is_deleted = ?';
+    $whereArr = [$customerId, $photoId, 0];
+
+    $count = $this->db->count($table, $where, $whereArr);
+
+    if ($count > 0) {
+      var_dump('🐛');
+      return false;
+    }
+
     $insData = [
       'customer_id' => $customerId,
-      'photo_id' => $photoId,
+      'photo_id' => $photoId
     ];
-
+    
     $res = $this->db->insert($table, $insData);
 
     return $res;

@@ -18,8 +18,6 @@ $twig = new \Twig\Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-$err_msg = [];
-
 
 $photo_id = (isset($_POST['photo_id']) === true && preg_match('/^[0-9]+$/', $_POST['photo_id']) === 1) ? $_POST['photo_id'] : '';
 $crt_id = (isset($_GET['crt_id']) === true && preg_match('/^\d+$/', $_GET['crt_id']) === 1) ? $_GET['crt_id'] : '';
@@ -33,12 +31,14 @@ if (isset($_SESSION['customer'])) {
 }
 $customer_id = $userArr['customer_id'];
 
+$errArr = [];
+
 
 if ($photo_id !== '') {
   $res = $cart->insCartData($customer_id, $photo_id);
 
   if ($res === false) {
-    $err_msg['added'] = "商品追加に失敗しました。";
+    $errArr['added'] = '既にカートに追加済み、もしくは購入済みです。(photo_id : ' . $photo_id . ')';
   }
 }
 
@@ -46,7 +46,7 @@ if ($crt_id !== '') {
   $res = $cart->deletePhoto($crt_id);
 
   if ($res === false) {
-    $err_msg['deleted'] = "商品削除に失敗しました。";
+    $errArr['deleted'] = "商品削除に失敗しました。";
   }
 }
 
@@ -54,7 +54,7 @@ if (isset($_POST['purchase'])) {
   $res = $cart->purchasePhotos($_POST['crt_ids']);
 
   if ($res === false) {
-    $err_msg['added'] = "商品購入に失敗しました。";
+    $errArr['added'] = "商品購入に失敗しました。";
   }
 }
 
@@ -65,6 +65,7 @@ $totalPrice = $cart->culcTotalPrice($crtArr);
 
 $context = [];
 $context['crtArr'] = $crtArr;
+$context['errArr'] = $errArr;
 $context['userArr'] = $userArr;
 $context['totalPrice'] = $totalPrice;
 $template = $twig->load('customer/cart.html.twig');

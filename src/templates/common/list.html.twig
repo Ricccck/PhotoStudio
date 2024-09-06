@@ -2,58 +2,74 @@
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-		<link href="css/common.css" rel="stylesheet" type="text/css"/>
-		<link href="css/list.css" rel="stylesheet" type="text/css"/>
-		<title>PhotoStudio</title>
+		<meta charset="utf-8"/>
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+		{# Bootstrap #}
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+		{# favicon #}
+		<link
+		rel="icon" href="/public/favicon-black.ico"/>
+
+		{# javascript #}
+		<script src="js/changeFavicon.js"></script>
+
+		{# css #}
+		<link rel="stylesheet" href="css/common.css" type="text/css"/>
+		<link rel="stylesheet" href="css/list.css" type="text/css"/>
+		<title>PhotoStudio -画像一覧-</title>
 	</head>
 
 	<body>
 		{% include 'common/header.html.twig' %}
 
 
-		<div id="list-body">
+		<div class="contents flex-row w-[100%]">
 			<div id="category-list">
-				<ul>
-						<li class="category">
-							<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}list.php">
-								全て
-							</a>
-						</li>
+				<ul class="list-group list-group-flush">
+					<li class="category list-group-item">
+						<a href="list.php">
+							全て
+						</a>
+					</li>
 					{% for value in ctgArr %}
-						<li class="category">
-							<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}list.php?ctg_id={{value.category_id}}">
+						<li class="category list-group-item">
+							<a href="list.php?ctg_id={{value.category_id}}">
 								{{value.category}}
 							</a>
-						</li>
+						</>
 					{% endfor %}
 				</ul>
 			</div>
 
-			<div id="contents">
-				<h1 class="title">
-					{{dataArr.ctg_name}}
-				</h1>
+			<div class="list-contents">
+				<div class="list-header">
+					<h1 class="title">
+						{{dataArr.ctg_name}}
+					</h1>
 
-				<div id="photo-search">
-					<form method="get" id="search-form" action="list.php">
-						<input type="hidden" name="ctg_id" value={{dataArr.ctg_id}}>
-						<input id="search-window" type="search" name="keyword" placeholder="キーワードを入力">
-						<button id="search-btn">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</form>
+					<div id="photo-search">
+						<form method="get" id="search-form" action="list.php">
+							<input type="hidden" name="ctg_id" value={{dataArr.ctg_id}}>
+							<input id="search-window" type="search" name="keyword" placeholder="キーワードを入力">
+							<button id="search-btn">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</form>
+					</div>
 				</div>
 
 				<div id="photo-list">
-					{% for value in photoArr %}
+					{% for photo in photoArr %}
 						<div class="photo">
-							<a href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}detail.php?photo_id={{value.photo_id}}">
-								<img src="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}sample/{{value.sample_url}}" alt="{{value.photo_title}}">
+							<a href="detail.php?photo_id={{photo.photo_id}}">
+								<img src="public/sample/{{photo.sample_url}}" alt="{{photo.photo_title}}">
 								<div class="photo-title">
 									<p>
-										{{value.photo_title}}
+										{{photo.photo_title}}
 									</p>
 								</div>
 							</a>
@@ -62,5 +78,10 @@
 				</div>
 			</div>
 		</div>
+
+		{% include './common/footer.html.twig' %}
+
+		{# Bootstrap #}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 	</body>
 </html>
