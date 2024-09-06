@@ -9,7 +9,7 @@ class PDODatabase
   private $db_pass = '';
   private $db_name = '';
   private $db_type = '';
-  
+
   private $order = '';
   private $limit = '';
   private $offset = '';
@@ -68,7 +68,7 @@ class PDODatabase
     $res = $stmt->execute($arrVal);
 
     if ($res === false) {
-      var_dump( 'select : ' . $this->catchError($stmt->errorInfo()));
+      var_dump('select : ' . $this->catchError($stmt->errorInfo()));
     }
 
     $data = [];
@@ -208,6 +208,24 @@ class PDODatabase
     return $res;
   }
 
+  public function delete($table, $where, $arrWhereVal = [])
+  {
+    $sql = " DELETE FROM "
+      . $table
+      . ' WHERE '
+      . $where;
+    $this->sqlLogInfo($sql, $arrWhereVal);
+    $stmt = $this->dbh->prepare($sql);
+
+    $res = $stmt->execute($arrWhereVal);
+
+    if ($res === false) {
+      var_dump('delete: ' . $this->catchError($stmt->errorInfo()));
+    }
+
+    return $res;
+  }
+
   public function getLastId()
   {
     return $this->dbh->lastInsertId();
@@ -222,7 +240,7 @@ class PDODatabase
   private function makeLogFile()
   {
     $logDir = dirname(__DIR__) . "/logs";
-    
+
     if (!file_exists($logDir)) {
       mkdir($logDir, 0777);
     }

@@ -1,7 +1,7 @@
 <?php
 namespace Photostudio;
 
-require_once  __DIR__ . '/../lib/Bootstrap.class.php';
+require_once __DIR__ . '/../lib/Bootstrap.class.php';
 
 use Photostudio\lib\Bootstrap;
 use Photostudio\lib\PDODatabase;
@@ -30,14 +30,13 @@ if (isset($_SESSION['client'])) {
   $userArr['username'] = 'Guest';
 }
 
-
 $photo_id = (isset($_GET['photo_id']) === true && preg_match('/^[0-9]+$/', $_GET['photo_id']) === 1) ? $_GET['photo_id'] : '';
 
-if ($photo_id !== '') {
-  $res = $client->switchPhotoDisplay($photo_id);
-
-  if ($res === false) {
-    $err_msg['display'] = "商品追加に失敗しました。";
+if (isset($_GET['action']) && $photo_id !== '') {
+  if ($_GET['action'] === 'show') {
+    $client->switchPhotoDisplay($photo_id);
+  } else if($_GET['action'] === 'delete') {
+    $client->actualDeletePhoto($photo_id);
   }
 }
 

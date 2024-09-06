@@ -1,3 +1,6 @@
 .env
 
+/src/app/public/sample
+/src/app/public/upload
+
 /docker/mysql/data

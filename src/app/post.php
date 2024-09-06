@@ -27,10 +27,7 @@ if($_SESSION['client'] === null) {
 
 $ctgArr = $photo->getCategoryList();
 
-
 $userArr = $client->getData($_SESSION['client']);
-var_dump($dataArr);
-
 
 $context = [];
 $context['ctgArr'] = $ctgArr;

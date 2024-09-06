@@ -1,6 +1,7 @@
 #detail-body {
+  padding-top: 60px;
+  height: 100vh;
   display: flex;
-  height: calc(100vh - 60px);
   overflow: hidden;
 }
 

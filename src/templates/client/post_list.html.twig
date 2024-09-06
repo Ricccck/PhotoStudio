@@ -18,9 +18,9 @@
 		<script src="js/changeFavicon.js"></script>
 
 		{# css #}
-		<link href="css/common.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="css/common.css" rel="stylesheet" type="text/css"/>
 		<link
-		href="css/postList.css" rel="stylesheet" type="text/css"/>
+		rel="stylesheet" href="css/postList.css" rel="stylesheet" type="text/css"/>
 
 
 		{# title #}
@@ -30,59 +30,68 @@
 	<body>
 		{% include 'common/header.html.twig' %}
 
-		<div id="contents">
-			<h1 class="title">
+
+		<div class="contents">
+			<h1 class="mb-3">
 				投稿画像一覧
 			</h1>
 
-			<div id="post-list">
-				<ul>
-					{% for value in photoArr %}
-						<li class="item">
-							<div>
-								<div class="item-title">
-									{{value.photo_title}}
+			<div class="accordion">
+				{% for photo in photoArr %}
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{photo.photo_id}}" aria-expanded="true" aria-controls="{{photo.photo_id}}">
+								{{photo.photo_title}}
+							</button>
+						</h2>
+
+						<div id="{{photo.photo_id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<img src="public/upload/{{photo.photo_url}}" alt="{{photo.photo_title}}" class="img-fluid"/>
+
+								<div class="mb-2">
+									<label>カテゴリー</label>
+									<h5>{{photo.category}}</h5>
 								</div>
-								<div class="item-img">
-									<img src="public/upload/{{value.photo_url}}" alt="{{value.photo_title}}">
-								</div>
-								<div class="item-category">
-									<div>カテゴリー</div>
-									<div id="img-category" class="info-str">
-										{{value.category}}
-									</div>
-								</div>
-								<div id="item-tags">
-									<div>タグ</div>
-									<div id="tags">
-										{% for val in value.tags %}
-											<div class="img-tag">{{val}}</div>
+
+								<div class="mb-2">
+									<label>タグ</label>
+									<div>
+										{% for tag in photo.tags %}
+											<span class="badge text-bg-white text-dark border border-dark">{{tag}}</span>
 										{% endfor %}
 									</div>
 								</div>
-								<div id="item-price">
-									<div>価格</div>
-									<div id="img-price" class="info-str">
-										¥<span id="price">{{value.price}}</span>-
-									</div>
+
+								<div class="mb-2">
+									<label>価格</label>
+									<h5>
+										¥<span id="price">{{photo.price}}</span>-
+									</h5>
 								</div>
-								<div class="btn-div">
-									<form method="post">
-										<input type="hidden" name="photo_id" value="{{value.photo_id}}">
-										{% if value.is_deleted is even %}
-											<a href="cart.php?crt_id={{value.photo_id}}">
-												<input type="submit" value="非公開にする">
-											</a>
+
+								<div class="mb-2">
+									<label>投稿時間</label>
+									<h6>{{photo.upload_at}}</h6>
+								</div>
+
+								<div class="d-flex gap-2">
+									<a class="btn btn-primary w-100 flex-grow-1" href="{{constant('Photostudio\\lib\\Bootstrap::APP_URL')}}postList.php?photo_id={{photo.photo_id}}&action=show">
+										{% if photo.is_deleted is even %}
+											非公開にする
 										{% else %}
-											<a href="cart.php?crt_id={{value.photo_id}}">
-												<input type="submit" value="公開にする">
-											</a>
+											公開する
 										{% endif %}
-									</form>
+									</a>
+									<button type="button" class="btn btn-danger w-100 flex-grow-1" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal{{photo.photo_id}}">
+										削除する
+									</button>
 								</div>
-							</li>
-						{% endfor %}
-					</ul>
+
+								{% include "common/delete_confirm_modal.html.twig" %}
+							</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>

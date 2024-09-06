@@ -181,7 +181,7 @@ class Client
     $clientId = $res['client_id'];
 
     $table = ' upload_photos up JOIN clients c ON up.client_id = c.client_id JOIN category ca ON up.category = ca.category_id JOIN price p ON up.price = p.price_id ';
-    $col = ' photo_id, photo_title, photo_url, c.username, ca.category, tags, sample_url, p.price, upload_at, up.is_deleted ';
+    $col = ' photo_id, photo_title, photo_url, c.username, ca.category, tags, sample_url, p.price, is_examined, upload_at, up.is_deleted ';
     $where = ($clientId !== '') ? ' up.client_id = ? ' : '';
 
     $arrVal = ($clientId !== '') ? [$clientId] : [];
@@ -205,6 +205,26 @@ class Client
       $arrWhereVal = [$photoId];
 
       $this->db->update($table, $where, $insData, $arrWhereVal);
+
+      $this->db->dbh->commit();
+
+      return true;
+    } catch (\Exception $e) {
+      $this->db->dbh->rollBack();
+
+      return false;
+    }
+  }
+
+  public function actualDeletePhoto($photoId) {
+    $this->db->dbh->beginTransaction();
+
+    try {
+      $table = ' upload_photos ';
+      $where = ' photo_id = ? ';
+      $arrWhereVal = [$photoId];
+
+      $this->db->delete($table, $where, $arrWhereVal);
 
       $this->db->dbh->commit();
 
