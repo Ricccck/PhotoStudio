@@ -24,12 +24,19 @@ class Cart
 
   public function getPurchasedPhotoList($customerId)
   {
-    $table = ' cart c JOIN upload_photos up ON c.photo_id = up.photo_id JOIN price p ON up.price = p.price_id ';
-    $col = ' c.photo_id, photo_title, photo_url ';
+    $table = ' cart c JOIN upload_photos up ON c.photo_id = up.photo_id JOIN category ca ON up.category = ca.category_id JOIN price p ON up.price = p.price_id ';
+    $col = ' crt_id, c.photo_id, photo_title, photo_url, ca.category, up.tags, p.price, up.upload_at, purchased_at';
     $where = ($customerId !== '') ? ' customer_id = ? AND is_purchased = ? AND c.is_deleted = ? ' : '';
 
     $arrVal = ($customerId !== '') ? [$customerId, 1, 0] : [];
     $res = $this->db->select($table, $col, $where, $arrVal);
+
+    $res[0]['tags'] = json_decode($res[0]['tags']);
+
+    foreach($res as &$arr){
+      $arr['upload_at'] = date('Y年m月d日', strtotime($arr['upload_at']));
+      $arr['purchased_at'] = date('Y年m月d日', strtotime($arr['purchased_at']));
+    }
 
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
@@ -114,3 +121,4 @@ class Cart
     }
   }
 }
+

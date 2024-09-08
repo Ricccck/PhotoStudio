@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="ja">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
@@ -25,44 +25,6 @@
 			</h1>
 		</div>
 
-		<div id="list-body">
-			<div id="category-list">
-				<ul>
-					<li class="category">
-						<a href="admin.php">
-							全て
-						</a>
-					</li>
-					{% for value in ctgArr %}
-						<li class="category">
-							<a href="dmin.php?ctg_id={{value.category_id}}">
-								{{value.category}}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
 
-			<div id="contents">
-				<h1 class="title">
-					{{ctg_name}}
-				</h1>
-				<div id="photo-list">
-
-					{% for value in photoArr %}
-						<div class="photo">
-							<a href="adminDetail.php?photo_id={{value.photo_id}}">
-								<img src="sample/{{value.sample_url}}" alt="{{value.photo_title}}">
-								<div class="photo-title">
-									<p>
-										{{value.photo_title}}
-									</p>
-								</div>
-							</a>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
 	</body>
 </html>

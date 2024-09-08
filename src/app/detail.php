@@ -25,7 +25,7 @@ $photo_id = (isset($_GET['photo_id']) === true && preg_match('/^[0-9]+$/', $_GET
 
 $photoArr = $photo->getPhotoDetailData($photo_id);
 
-$photoArr['upload_date'] = date('Y年m月d日', strtotime($photoArr['upload_at']));
+$photoArr['upload_at'] = date('Y年m月d日', strtotime($photoArr['upload_at']));
 
 
 $userArr = [];

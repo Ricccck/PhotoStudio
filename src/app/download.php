@@ -41,26 +41,28 @@ $photo_id = (isset($_GET['photo_id']) === true && preg_match('/^[0-9]+$/', $_GET
 
 
 if ($photo_id !== '') {
-  $file = __DIR__ . '/upload/' . $photo->getPhotoURL($photo_id);
-
+  $file = __DIR__ . '/public/upload/' . $photo->getPhotoURL($photo_id);
 
   if (file_exists($file) && is_readable($file)) {
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($file));
+      if (ob_get_length()) {
+          ob_end_clean();
+      }
 
-    ob_clean();
-    flush();
+      header('Content-Description: File Transfer');
+      header('Content-Type: application/octet-stream');
+      header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+      header('Expires: 0');
+      header('Cache-Control: must-revalidate');
+      header('Pragma: public');
+      header('Content-Length: ' . filesize($file));
 
-    readfile($file);
-    exit;
+      readfile($file);
+      exit;
   } else {
-    $err_msg =  '画像のダウンロードに失敗しました。';
+      $err_msg = '画像のダウンロードに失敗しました。';
   }
+} else {
+  $err_msg = '無効な画像IDです。';
 }
 
 
@@ -69,3 +71,4 @@ $context['crtArr'] = $crtArr;
 $context['err_msg'] = $err_msg;
 $template = $twig->load('customer/download.html.twig');
 $template->display($context);
+var_dump($crtArr);
