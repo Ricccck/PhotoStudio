@@ -1,0 +1,89 @@
+<div class="accordion col-6">
+	{% for customer in customerArr %}
+		<div class="accordion-item ">
+			<h2 class="accordion-header">
+				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#customer{{customer.customer_id}}" aria-expanded="true" aria-controls="customer{{customer.customer_id}}">
+					{% if customer.is_active > 0 %}
+						<span class="ranslate-middle p-2 bg-danger border border-light rounded-circle"></span>
+					{% endif %}
+					{{customer.username}}
+				</button>
+			</h2>
+
+			<div id="customer{{customer.customer_id}}" class="accordion-collapse collapse" data-bs-parent="#downloadAccordion">
+				<div class="accordion-body">
+					<div class="mb-2">
+						<label>ユーザーネーム</label>
+						<h5>{{customer.username}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>ID</label>
+						<h5>{{customer.customer_id}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>氏名</label>
+						<div class="d-flex p-2">
+							<label>（姓）</label>
+							<h5>{{customer.last_name}}</h5>
+							<label>（名）</label>
+							<h5>{{customer.first_name}}</h5>
+						</div>
+					</div>
+
+					<div class="mb-2">
+						<label>氏名（かな）</label>
+						<div class="d-flex p-2">
+							<label>（姓）</label>
+							<h5>{{customer.last_name_kana}}</h5>
+							<label>（名）</label>
+							<h5>{{customer.first_name_kana}}</h5>
+						</div>
+					</div>
+
+					<div class="mb-2">
+						<label>会社名</label>
+						<h5>{{customer.company_name}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>メールアドレス</label>
+						<h5>{{customer.email}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>電話番号</label>
+						<h5>{{customer.phone_number}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>性別</label>
+						<h5>{{sexArr[customer.sex]}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>郵便番号</label>
+						<h5>{{customer.zip}}</h5>
+					</div>
+
+					<div class="mb-3">
+						<label>住所</label>
+						<h5>{{customer.pref}}{{customer.city}}{{customer.town}}</h5>
+					</div>
+
+					<div class="d-flex gap-2">
+						<a class="btn {% if customer.is_active > 0 %} btn-primary {% else %} btn-secondary {% endif %} w-100 flex-grow-1" {% if customer.is_active > 0 %} href="adminUser.php?customer_id={{cutomer.customer_id}}&action=offline" {% endif %}>
+							オフラインにする
+						</a>
+						<button type="button" class="btn btn-danger w-100 flex-grow-1" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{customer.customer_id}}">
+							削除する
+						</button>
+					</div>
+
+					{% include "admin/delete_customer_session_modal.html.twig" %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>

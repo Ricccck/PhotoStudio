@@ -1,0 +1,17 @@
+.accordion {
+  width: 80%;
+}
+
+.accordion-button {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.accordion-header img{
+  height: 60px;
+}
+
+.accordion-body img{
+  height: 300px;
+}

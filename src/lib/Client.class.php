@@ -187,7 +187,10 @@ class Client
     $arrVal = ($clientId !== '') ? [$clientId] : [];
     $res = $this->db->select($table, $col, $where, $arrVal);
 
-    $res[0]['tags'] = json_decode($res[0]['tags']);
+    foreach($res as &$arr){
+      $arr['tags'] = json_decode($arr['tags']);
+      $arr['upload_at'] = date('Y年m月d日', strtotime($arr['upload_at']));
+    }
 
     return ($res !== false && count($res) !== 0) ? $res : false;
   }

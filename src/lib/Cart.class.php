@@ -31,9 +31,8 @@ class Cart
     $arrVal = ($customerId !== '') ? [$customerId, 1, 0] : [];
     $res = $this->db->select($table, $col, $where, $arrVal);
 
-    $res[0]['tags'] = json_decode($res[0]['tags']);
-
     foreach($res as &$arr){
+      $arr['tags'] = json_decode($arr['tags']);
       $arr['upload_at'] = date('Y年m月d日', strtotime($arr['upload_at']));
       $arr['purchased_at'] = date('Y年m月d日', strtotime($arr['purchased_at']));
     }

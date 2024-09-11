@@ -40,7 +40,6 @@ if (isset($_GET['action']) && $photo_id !== '') {
   }
 }
 
-
 $photoArr = $client->getPostPhotoList($_SESSION['client']);
 
 

@@ -1,0 +1,102 @@
+<div class="accordion col-6">
+	{% for client in clientArr %}
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#client{{client.client_id}}" aria-expanded="true" aria-controls="client{{client.client_id}}">
+					{% if client.is_active > 0 %}
+						<span class="ranslate-middle p-2 bg-danger border border-light rounded-circle"></span>
+					{% endif %}
+					{{client.username}}
+				</button>
+			</h2>
+
+			<div id="client{{client.client_id}}" class="accordion-collapse collapse" data-bs-parent="#downloadAccordion">
+				<div class="accordion-body">
+					<div class="mb-2">
+						<label>ユーザーネーム</label>
+						<h5>{{client.username}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>ID</label>
+						<h5>{{client.client_id}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>氏名</label>
+						<div class="d-flex p-2">
+							<label>（姓）</label>
+							<h5>{{client.last_name}}</h5>
+							<label>（名）</label>
+							<h5>{{client.first_name}}</h5>
+						</div>
+					</div>
+
+					<div class="mb-2">
+						<label>氏名（かな）</label>
+						<div class="d-flex p-2">
+							<label>（姓）</label>
+							<h5>{{client.last_name_kana}}</h5>
+							<label>（名）</label>
+							<h5>{{client.first_name_kana}}</h5>
+						</div>
+					</div>
+
+					<div class="mb-2">
+						<label>会社名</label>
+						{% if client.company_name %}
+							<h5>{{client.company_name}}</h5>
+						{% else %}
+							<h5>なし</h5>
+						{% endif %}
+					</div>
+
+					<div class="mb-2">
+						<label>メールアドレス</label>
+						<h5>{{client.email}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>電話番号</label>
+						<h5>{{client.phone_number}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>性別</label>
+						<h5>{{sexArr[client.sex]}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>郵便番号</label>
+						<h5>{{client.zip}}</h5>
+					</div>
+
+					<div class="mb-2">
+						<label>住所</label>
+						<h5>{{client.pref}}{{client.city}}{{client.town}}</h5>
+					</div>
+
+					<div class="mb-3">
+						<label>Webサイト</label>
+						{% if client.website %}
+							<h5>{{client.website}}</h5>
+						{% else %}
+							<h5>なし</h5>
+						{% endif %}
+					</div>
+
+					<div class="d-flex gap-2">
+						<a class="btn {% if client.is_active > 0 %} btn-primary {% else %} btn-secondary {% endif %} w-100 flex-grow-1" {% if client.is_active > 0 %} href="adminUser.php?client_id={{client.client_id}}&action=offline" {% endif %}>
+							オフラインにする
+						</a>
+						<button type="button" class="btn btn-danger w-100 flex-grow-1" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{client.client_id}}">
+							削除する
+						</button>
+					</div>
+
+					{% include "admin/delete_client_session_modal.html.twig" %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
