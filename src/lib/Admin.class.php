@@ -32,12 +32,12 @@ class Admin
     return $res;
   }
 
-  public function getPhotoList()
+  public function getPhotoList($isExamined)
   {
     $table = ' upload_photos up JOIN clients c ON up.client_id = c.client_id JOIN category ca ON up.category = ca.category_id JOIN price p ON up.price = p.price_id ';
     $col = ' photo_id, photo_title, photo_url, c.username, ca.category, tags, photo_url, sample_url, p.price, is_examined, upload_at, up.is_deleted ';
     $where = ' up.is_deleted = ? AND is_examined = ? ';
-    $arrVal = [0, 0];
+    $arrVal = [0, $isExamined];
 
     $res = $this->db->select($table, $col, $where, $arrVal);
 

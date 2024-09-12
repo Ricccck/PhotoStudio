@@ -25,20 +25,20 @@
 	</head>
 
 	<body>
-		{% include 'common/header.html.twig' %}
+		{% include 'admin/admin_header.html.twig' %}
 
 
 		<div class="contents flex-row w-[100%]">
 			<div id="category-list">
 				<ul class="list-group list-group-flush">
 					<li class="category list-group-item">
-						<a href="list.php">
+						<a href="adminList.php">
 							全て
 						</a>
 					</li>
 					{% for value in ctgArr %}
 						<li class="category list-group-item">
-							<a href="list.php?ctg_id={{value.category_id}}">
+							<a href="adminList.php?ctg_id={{value.category_id}}">
 								{{value.category}}
 							</a>
 						</li>
@@ -53,7 +53,7 @@
 					</h1>
 
 					<div id="photo-search">
-						<form method="get" id="search-form" action="list.php">
+						<form method="get" id="search-form" action="adminList.php">
 							<input type="hidden" name="ctg_id" value={{dataArr.ctg_id}}>
 							<input id="search-window" type="search" name="keyword" placeholder="キーワードを入力">
 							<button id="search-btn">
@@ -66,7 +66,7 @@
 				<div id="photo-list">
 					{% for photo in photoArr %}
 						<div class="photo">
-							<a href="detail.php?photo_id={{photo.photo_id}}">
+							<a href="adminDetail.php?photo_id={{photo.photo_id}}">
 								<img src="public/sample/{{photo.sample_url}}" alt="{{photo.photo_title}}">
 								<div class="photo-title">
 									<p>

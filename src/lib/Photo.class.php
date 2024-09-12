@@ -30,7 +30,7 @@ class Photo
     return $res;
   }
 
-  public function getPhotoList($ctg_id)
+  public function getPhotoList($ctg_id = '')
   {
     $table = ' upload_photos up ';
     $col = ' photo_id, photo_title, photo_url, sample_url';
